@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "esbuild": "^0.14.38",
+    "kaboom": "^2000.2.9"
+  },
+  "scripts": {
+    "build": "esbuild src/Main.js --bundle > build.js "
+  }
+}
