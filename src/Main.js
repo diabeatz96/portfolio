@@ -1,23 +1,14 @@
 import kaboom from "kaboom";
+import Home from "./room/Home";
+import Portfolio from "./room/Portfolio";
 
 kaboom();
 
-add([
-    text("hello"),
-    pos(120, 80),
-]);
-
-add([
-    text("Dogs"),
-    pos(150, 200)
-]);
-
 // load a sprite "bean" from an image
 loadSprite("bean", "sprites/bean.png")
+loadAseprite("player", "sprites/player/Warrior-sheet.png", "sprites/player/Warrior.json")
 
-// add something to screen
-add([
-    sprite("bean"),
-    pos(80, 40),
-    scale(0.2)
-])
+scene("Home", Home)
+scene("Portfolio", Portfolio)
+
+go("Home");

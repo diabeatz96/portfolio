@@ -2681,20 +2681,61 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     return ye;
   }, "default");
 
+  // src/components/player.js
+  function player() {
+    add([
+      sprite("player")
+    ]);
+    const player2 = add([
+      sprite("player", { anim: "Loop" }),
+      pos(center()),
+      scale(2),
+      origin("center"),
+      area(),
+      body()
+    ]);
+  }
+  var player_default = player;
+
+  // src/room/Home.js
+  function Home() {
+    player_default();
+    console.log("Home dog");
+    onKeyPress("backspace", () => {
+      go("Portfolio");
+    });
+    add([
+      pos(24, 24),
+      text("ohhi", {
+        size: 48,
+        width: 320,
+        font: "sinko"
+      })
+    ]);
+    add([
+      rect(width(), 24),
+      area(),
+      outline(1),
+      pos(0, height() - 24),
+      solid()
+    ]);
+  }
+  var Home_default = Home;
+
+  // src/room/Portfolio.js
+  function Portfolio() {
+    console.log("Portfolio dog");
+    onKeyPress("backspace", () => {
+      go("Home");
+    });
+  }
+  var Portfolio_default = Portfolio;
+
   // src/Main.js
   no();
-  add([
-    text("hello"),
-    pos(120, 80)
-  ]);
-  add([
-    text("Dogs"),
-    pos(150, 200)
-  ]);
   loadSprite("bean", "sprites/bean.png");
-  add([
-    sprite("bean"),
-    pos(80, 40),
-    scale(0.2)
-  ]);
+  loadAseprite("player", "sprites/player/Warrior-sheet.png", "sprites/player/Warrior.json");
+  scene("Home", Home_default);
+  scene("Portfolio", Portfolio_default);
+  go("Home");
 })();
