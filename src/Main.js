@@ -11,9 +11,12 @@ kaboom({
 
 gravity(640);
 
-// load a sprite "bean" from an image
+// Loading Assests
 loadSprite("bean", "sprites/bean.png")
 loadAseprite("player", "sprites/player/Warrior-sheet.png", "sprites/player/Warrior.json")
+loadSprite("teleporter", "sprites/objects/teleporter.png")
+loadSprite("background", "sprites/background/temp.png");
+
 
 scene("Home", Home)
 scene("Portfolio", Portfolio)

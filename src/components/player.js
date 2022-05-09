@@ -7,8 +7,9 @@ function player() {
         sprite("player"),
         pos(center()),
         scale(2),
-        area(),
-        body()
+        area({scale: 0.8, offset: (0, 15), width: 40}),
+        body(),
+        "player"
     ])
 
     /**
@@ -51,24 +52,29 @@ function player() {
         }
     })
 
+    /**
+     * Mouse Movement
+     */
+
     onMouseRelease(() => {
         if (player.isGrounded() && !isKeyDown("a") && !isKeyDown("d")) {
             player.play("Idle")
         }
     })
+
     onMouseDown(() => {
         console.log("Swag");
         let distance = mousePos().x;
         let newPos = distance - (player.pos.x);
 
-        if (player.pos.x > mousePos().x) {
+       if (player.pos.x > mousePos().x) {
             player.flipX(true)
             player.move(newPos, 0);
         } else
             player.flipX(false)
             player.move(newPos, 0)
 
-        debug.log(distance);
+        debug.log(newPos);
         if (player.isGrounded() && player.curAnim() !== "Run") {
             player.play("Run")
         }

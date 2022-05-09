@@ -111,10 +111,10 @@
     return i * 180 / Math.PI;
   }
   a(Xt, "rad2deg");
-  function z(i, t, l) {
-    return t > l ? z(i, l, t) : Math.min(Math.max(i, t), l);
+  function z2(i, t, l) {
+    return t > l ? z2(i, l, t) : Math.min(Math.max(i, t), l);
   }
-  a(z, "clamp");
+  a(z2, "clamp");
   function Ve(i, t, l) {
     return i + (t - i) * l;
   }
@@ -124,7 +124,7 @@
   }
   a(dt, "map");
   function dr(i, t, l, w, U) {
-    return z(dt(i, t, l, w, U), w, U);
+    return z2(dt(i, t, l, w, U), w, U);
   }
   a(dr, "mapc");
   var N = class {
@@ -218,7 +218,7 @@
       b(this, "r", 255);
       b(this, "g", 255);
       b(this, "b", 255);
-      this.r = z(t, 0, 255), this.g = z(l, 0, 255), this.b = z(w, 0, 255);
+      this.r = z2(t, 0, 255), this.g = z2(l, 0, 255), this.b = z2(w, 0, 255);
     }
     static fromArray(t) {
       return new ue(t[0], t[1], t[2]);
@@ -997,7 +997,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     a(_r, "loadBean");
     function Br(e) {
-      return e !== void 0 && (w.masterNode.gain.value = z(e, Or, Ir)), w.masterNode.gain.value;
+      return e !== void 0 && (w.masterNode.gain.value = z2(e, Or, Ir)), w.masterNode.gain.value;
     }
     a(Br, "volume");
     function Xe(e, n = { loop: false, volume: 1, speed: 1, detune: 0, seek: 0 }) {
@@ -1039,11 +1039,11 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       }, stopped() {
         return B("stopped()", "isStopped()"), this.isStopped();
       }, speed(y) {
-        return y !== void 0 && (c.playbackRate.value = z(y, ds, fs)), c.playbackRate.value;
+        return y !== void 0 && (c.playbackRate.value = z2(y, ds, fs)), c.playbackRate.value;
       }, detune(y) {
-        return c.detune ? (y !== void 0 && (c.detune.value = z(y, ps, ms)), c.detune.value) : 0;
+        return c.detune ? (y !== void 0 && (c.detune.value = z2(y, ps, ms)), c.detune.value) : 0;
       }, volume(y) {
-        return y !== void 0 && (s.gain.value = z(y, Or, Ir)), s.gain.value;
+        return y !== void 0 && (s.gain.value = z2(y, Or, Ir)), s.gain.value;
       }, loop() {
         c.loop = true;
       }, unloop() {
@@ -1861,9 +1861,9 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       }), H("f8", () => {
         C.paused = !C.paused;
       }), H("f7", () => {
-        C.timeScale = ge(z(C.timeScale - 0.2, 0, 2), 1);
+        C.timeScale = ge(z2(C.timeScale - 0.2, 0, 2), 1);
       }), H("f9", () => {
-        C.timeScale = ge(z(C.timeScale + 0.2, 0, 2), 1);
+        C.timeScale = ge(z2(C.timeScale + 0.2, 0, 2), 1);
       }), H("f10", () => {
         C.stepFrame();
       }), H("f5", () => {
@@ -2689,8 +2689,9 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       sprite("player"),
       pos(center()),
       scale(2),
-      area(),
-      body()
+      area({ scale: 0.8, offset: (0, 15), width: 40 }),
+      body(),
+      "player"
     ]);
     player2.onGround(() => {
       if (!isKeyDown("a") && !isKeyDown("d")) {
@@ -2734,7 +2735,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       } else
         player2.flipX(false);
       player2.move(newPos, 0);
-      debug.log(distance);
+      debug.log(newPos);
       if (player2.isGrounded() && player2.curAnim() !== "Run") {
         player2.play("Run");
       }
@@ -2742,16 +2743,53 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   }
   var player_default = player;
 
+  // src/room/Portfolio.js
+  function Portfolio() {
+    console.log("Portfolio dog");
+    onKeyPress("backspace", () => {
+      go("Home");
+    });
+  }
+  var Portfolio_default = Portfolio;
+
+  // src/components/teleporter.js
+  function teleporter() {
+    const teleporter2 = add([
+      sprite("teleporter"),
+      origin("center"),
+      area({ scale: 0.3, offset: (-10, -30) }),
+      pos(100, 420),
+      scale(0.3),
+      "teleporter"
+    ]);
+  }
+  var teleporter_default = teleporter;
+
+  // src/components/background.js
+  function background() {
+    let background2 = add([
+      sprite("background"),
+      pos(width() / 2, height() / 2),
+      origin("center"),
+      scale(1),
+      z(-10),
+      fixed()
+    ]);
+  }
+  var background_default = background;
+
   // src/room/Home.js
   function Home() {
     player_default();
+    teleporter_default();
+    background_default();
     console.log("Home dog");
     onKeyPress("backspace", () => {
       go("Portfolio");
     });
     add([
-      pos(24, 24),
-      text("ohhi", {
+      pos(425, 50),
+      text("Home", {
         size: 48,
         width: 320,
         font: "sinko"
@@ -2764,17 +2802,11 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       pos(0, height() - 48),
       solid()
     ]);
-  }
-  var Home_default = Home;
-
-  // src/room/Portfolio.js
-  function Portfolio() {
-    console.log("Portfolio dog");
-    onKeyPress("backspace", () => {
-      go("Home");
+    onCollide("teleporter", "player", () => {
+      go("Portfolio");
     });
   }
-  var Portfolio_default = Portfolio;
+  var Home_default = Home;
 
   // src/Main.js
   no({
@@ -2786,6 +2818,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   gravity(640);
   loadSprite("bean", "sprites/bean.png");
   loadAseprite("player", "sprites/player/Warrior-sheet.png", "sprites/player/Warrior.json");
+  loadSprite("teleporter", "sprites/objects/teleporter.png");
+  loadSprite("background", "sprites/background/temp.png");
   scene("Home", Home_default);
   scene("Portfolio", Portfolio_default);
   go("Home");
