@@ -2683,17 +2683,62 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
 
   // src/components/player.js
   function player() {
-    add([
-      sprite("player")
-    ]);
+    const SPEED = 200;
+    const JUMPFORCE = 240;
     const player2 = add([
-      sprite("player", { anim: "Loop" }),
+      sprite("player"),
       pos(center()),
       scale(2),
-      origin("center"),
       area(),
       body()
     ]);
+    player2.onGround(() => {
+      if (!isKeyDown("a") && !isKeyDown("d")) {
+        player2.play("Idle");
+      } else {
+        player2.play("Run");
+      }
+    });
+    console.log(player2.isGrounded());
+    onKeyDown("a", () => {
+      player2.move(-SPEED, 0);
+      player2.flipX(true);
+      if (player2.isGrounded() && player2.curAnim() !== "Run") {
+        player2.play("Run");
+      }
+    });
+    onKeyDown("d", () => {
+      player2.move(SPEED, 0);
+      player2.flipX(false);
+      if (player2.isGrounded() && player2.curAnim() !== "Run") {
+        player2.play("Run");
+      }
+    });
+    onKeyRelease(["a", "d"], () => {
+      if (player2.isGrounded() && !isKeyDown("a") && !isKeyDown("d")) {
+        player2.play("Idle");
+      }
+    });
+    onMouseRelease(() => {
+      if (player2.isGrounded() && !isKeyDown("a") && !isKeyDown("d")) {
+        player2.play("Idle");
+      }
+    });
+    onMouseDown(() => {
+      console.log("Swag");
+      let distance = mousePos().x;
+      let newPos = distance - player2.pos.x;
+      if (player2.pos.x > mousePos().x) {
+        player2.flipX(true);
+        player2.move(newPos, 0);
+      } else
+        player2.flipX(false);
+      player2.move(newPos, 0);
+      debug.log(distance);
+      if (player2.isGrounded() && player2.curAnim() !== "Run") {
+        player2.play("Run");
+      }
+    });
   }
   var player_default = player;
 
@@ -2713,10 +2758,10 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       })
     ]);
     add([
-      rect(width(), 24),
+      rect(width(), 48),
+      outline(4),
       area(),
-      outline(1),
-      pos(0, height() - 24),
+      pos(0, height() - 48),
       solid()
     ]);
   }
@@ -2732,7 +2777,13 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   var Portfolio_default = Portfolio;
 
   // src/Main.js
-  no();
+  no({
+    width: 1e3,
+    height: 500,
+    font: "sinko",
+    stretch: true
+  });
+  gravity(640);
   loadSprite("bean", "sprites/bean.png");
   loadAseprite("player", "sprites/player/Warrior-sheet.png", "sprites/player/Warrior.json");
   scene("Home", Home_default);
