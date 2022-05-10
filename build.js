@@ -2807,12 +2807,31 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   }
   var background_default = background;
 
+  // src/EventManager.js
+  function EventManager() {
+    onCollide("player", "portal", () => {
+      const person = get("player")[0];
+      add([
+        text("Press E", { size: 100 }),
+        pos(person.pos.x, person.pos.y - 40),
+        width(24),
+        height(24),
+        "E Text"
+      ]);
+      wait(3, () => {
+        console.log("It's Destroyed!");
+        destroyAll("E Text");
+      });
+    });
+  }
+  var EventManager_default = EventManager;
+
   // src/room/Home.js
   function Home() {
     player_default();
     teleporter_default();
     background_default();
-    console.log("Home dog");
+    EventManager_default();
     onKeyPress("backspace", () => {
       go("Portfolio");
     });
@@ -2833,16 +2852,16 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       })
     ]);
     addLevel([
-      "                          $",
-      "                          $",
-      "                          $",
-      "  {===}                   $",
-      "                          $",
-      "                          &",
-      "                {===}     $",
-      "                          $",
-      "                          $",
-      "                          $",
+      "                           ",
+      "                           ",
+      "                           ",
+      "  {===}                    ",
+      "                           ",
+      "                           ",
+      "                {===}      ",
+      " @                      @  ",
+      "                           ",
+      "                           ",
       "{=========================}",
       "---------------------------",
       "---------------------------",
@@ -2861,7 +2880,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         solid()
       ],
       "{": () => [
-        sprite("tile", { frame: 0 }),
+        sprite("tile", { frame: 0, animSpeed: 0.3 }),
         area()
       ],
       "}": () => [
@@ -2887,6 +2906,12 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         sprite("tile", { frame: 6 }),
         area(),
         "corner"
+      ],
+      "@": () => [
+        sprite("portal", { anim: "IDLE" }),
+        scale(1.4),
+        area(),
+        "portal"
       ]
     });
     onCollide("teleporter", "player", () => {
@@ -2908,6 +2933,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   loadSprite("teleporter", "sprites/objects/teleporter.png");
   loadSprite("background", "sprites/background/temp.png");
   loadAseprite("tile", "sprites/objects/DarkForestTile.png", "sprites/objects/DarkForestTile.Json");
+  loadAseprite("cat", "sprites/objects/Cat.png", "sprites/objects/Cat.Json");
+  loadAseprite("portal", "sprites/objects/Portal.png", "sprites/objects/Portal.Json");
   scene("Home", Home_default);
   scene("Portfolio", Portfolio_default);
   go("Home");

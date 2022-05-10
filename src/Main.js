@@ -1,7 +1,7 @@
 import kaboom from "kaboom";
 import Home from "./room/Home";
 import Portfolio from "./room/Portfolio";
-
+import EventManager from "./EventManager";
 
 kaboom({
     width: 1000,
@@ -18,6 +18,8 @@ loadAseprite("player", "sprites/player/Warrior-sheet.png", "sprites/player/Warri
 loadSprite("teleporter", "sprites/objects/teleporter.png")
 loadSprite("background", "sprites/background/temp.png");
 loadAseprite("tile", "sprites/objects/DarkForestTile.png", "sprites/objects/DarkForestTile.Json")
+loadAseprite("cat", "sprites/objects/Cat.png", "sprites/objects/Cat.Json")
+loadAseprite("portal", "sprites/objects/Portal.png", "sprites/objects/Portal.Json")
 
 
 scene("Home", Home)

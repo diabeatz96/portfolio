@@ -1,13 +1,13 @@
 import player from "../components/player";
 import teleporter from "../components/teleporter";
 import background from "../components/background";
+import EventManager from "../EventManager";
 
 function Home() {
     player();
     teleporter();
     background();
-
-    console.log('Home dog')
+    EventManager();
 
     onKeyPress("backspace", () => {
         go("Portfolio")
@@ -36,16 +36,16 @@ function Home() {
 
 
     addLevel([
-        "                          $",
-        "                          $",
-        "                          $",
-        "  {===}                   $",
-        "                          $",
-        "                          &",
-        "                {===}     $",
-        "                          $",
-        "                          $",
-        "                          $",
+        "                           ",
+        "                           ",
+        "                           ",
+        "  {===}                    ",
+        "                           ",
+        "                           ",
+        "                {===}      ",
+        " @                      @  ",
+        "                           ",
+        "                           ",
         "{=========================}",
         "---------------------------",
         "---------------------------",
@@ -66,7 +66,7 @@ function Home() {
             solid(),
         ],
         "{": () => [
-            sprite("tile", {frame: 0}),
+            sprite("tile", {frame: 0, animSpeed: 0.3}),
             area(),
         ],
         "}": () => [
@@ -92,6 +92,12 @@ function Home() {
             sprite("tile", {frame: 6}),
             area(),
             "corner",
+        ],
+        "@": () => [
+            sprite("portal", {anim: "IDLE"}),
+            scale(1.4),
+            area(),
+            "portal"
         ],
     })
 
