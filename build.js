@@ -2908,7 +2908,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         "corner"
       ],
       "@": () => [
-        sprite("portal", { anim: "IDLE" }),
+        sprite("portal"),
         scale(1.4),
         area(),
         "portal"
