@@ -94,7 +94,7 @@ function Home() {
             "corner",
         ],
         "@": () => [
-            sprite("portal", {anim: "IDLE"}),
+            sprite("portal"),
             scale(1.4),
             area(),
             "portal"
