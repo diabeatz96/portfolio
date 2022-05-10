@@ -2681,10 +2681,26 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     return ye;
   }, "default");
 
+  // src/components/camera.js
+  function camera(state) {
+    switch (state) {
+      case 0:
+        camScale(0.7);
+        break;
+      case 1:
+        camScale(1.5);
+        break;
+      default:
+        camScale(0.7);
+    }
+  }
+  var camera_default = camera;
+
   // src/components/player.js
   function player() {
     const SPEED = 200;
     const JUMPFORCE = 240;
+    let inDialog = true;
     const player2 = add([
       sprite("player"),
       pos(center()),
@@ -2693,6 +2709,20 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       body(),
       "player"
     ]);
+    camScale(0.7);
+    onKeyRelease("tab", () => {
+      console.log("Hi!");
+      debug.log(inDialog);
+      inDialog = !inDialog;
+      if (inDialog === true) {
+        camera_default(0);
+      } else if (inDialog === false) {
+        camera_default(1);
+      }
+    });
+    player2.onUpdate(() => {
+      camPos(player2.pos);
+    });
     player2.onGround(() => {
       if (!isKeyDown("a") && !isKeyDown("d")) {
         player2.play("Idle");
@@ -2726,7 +2756,6 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       }
     });
     onMouseDown(() => {
-      console.log("Swag");
       let distance = mousePos().x;
       let newPos = distance - player2.pos.x;
       if (player2.pos.x > mousePos().x) {
@@ -2735,7 +2764,6 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       } else
         player2.flipX(false);
       player2.move(newPos, 0);
-      debug.log(newPos);
       if (player2.isGrounded() && player2.curAnim() !== "Run") {
         player2.play("Run");
       }
@@ -2773,7 +2801,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       origin("center"),
       scale(1),
       z(-10),
-      fixed()
+      fixed(),
+      "background"
     ]);
   }
   var background_default = background;
@@ -2796,12 +2825,70 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       })
     ]);
     add([
-      rect(width(), 48),
-      outline(4),
-      area(),
-      pos(0, height() - 48),
-      solid()
+      pos(300, 100),
+      text("Welcome to my website! My name's Adam and I am a Web and Game Developer.", {
+        size: 24,
+        width: 500,
+        font: "sinko"
+      })
     ]);
+    addLevel([
+      "                          $",
+      "                          $",
+      "                          $",
+      "  {===}                   $",
+      "                          $",
+      "                          &",
+      "                {===}     $",
+      "                          $",
+      "                          $",
+      "                          $",
+      "{=========================}",
+      "---------------------------",
+      "---------------------------",
+      "---------------------------",
+      "---------------------------",
+      "---------------------------",
+      "---------------------------",
+      "---------------------------",
+      "---------------------------"
+    ], {
+      width: 32,
+      height: 32,
+      "=": () => [
+        sprite("tile", { frame: 1 }),
+        area(),
+        solid()
+      ],
+      "{": () => [
+        sprite("tile", { frame: 0 }),
+        area()
+      ],
+      "}": () => [
+        sprite("tile", { frame: 2 }),
+        area(),
+        "corner"
+      ],
+      "$": () => [
+        sprite("tile", { frame: 5 }),
+        area(),
+        "danger"
+      ],
+      "-": () => [
+        sprite("tile", { frame: 4 }),
+        area(),
+        solid()
+      ],
+      "[": () => [
+        sprite("tile", { frame: 5 }),
+        area()
+      ],
+      "]": () => [
+        sprite("tile", { frame: 6 }),
+        area(),
+        "corner"
+      ]
+    });
     onCollide("teleporter", "player", () => {
       go("Portfolio");
     });
@@ -2820,6 +2907,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   loadAseprite("player", "sprites/player/Warrior-sheet.png", "sprites/player/Warrior.json");
   loadSprite("teleporter", "sprites/objects/teleporter.png");
   loadSprite("background", "sprites/background/temp.png");
+  loadAseprite("tile", "sprites/objects/DarkForestTile.png", "sprites/objects/DarkForestTile.Json");
   scene("Home", Home_default);
   scene("Portfolio", Portfolio_default);
   go("Home");

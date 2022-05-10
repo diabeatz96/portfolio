@@ -8,7 +8,8 @@ function background() {
         scale(1),
         z(-10),
         // Keep the background position fixed even when the camera moves
-        fixed()
+        fixed(),
+        "background"
     ]);
 }
 

@@ -23,16 +23,77 @@ function Home() {
         }),
     ])
 
-
-
     add([
-        rect(width(), 48),
-        outline(4),
-        area(),
-        pos(0, height() - 48),
-        // Give objects a solid() component if you don't want other solid objects pass through
-        solid(),
+        pos(300, 100),
+        text("Welcome to my website! My name's Adam and I am a Web and Game Developer.", {
+            size: 24, // 48 pixels tall
+            width: 500, // it'll wrap to next line when width exceeds this value
+            font: "sinko", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
+        }),
     ])
+
+
+
+
+    addLevel([
+        "                          $",
+        "                          $",
+        "                          $",
+        "  {===}                   $",
+        "                          $",
+        "                          &",
+        "                {===}     $",
+        "                          $",
+        "                          $",
+        "                          $",
+        "{=========================}",
+        "---------------------------",
+        "---------------------------",
+        "---------------------------",
+        "---------------------------",
+        "---------------------------",
+        "---------------------------",
+        "---------------------------",
+        "---------------------------",
+    ], {
+        // define the size of each block
+        width: 32,
+        height: 32,
+        // define what each symbol means, by a function returning a component list (what will be passed to add())
+        "=": () => [
+            sprite("tile", {frame: 1}),
+            area(),
+            solid(),
+        ],
+        "{": () => [
+            sprite("tile", {frame: 0}),
+            area(),
+        ],
+        "}": () => [
+            sprite("tile", {frame: 2}),
+            area(),
+            "corner",
+        ],
+        "$": () => [
+            sprite("tile", {frame: 5}),
+            area(),
+            "danger",
+        ],
+        "-": () => [
+            sprite("tile", {frame: 4}),
+            area(),
+            solid(),
+        ],
+        "[": () => [
+            sprite("tile", {frame: 5}),
+            area(),
+        ],
+        "]": () => [
+            sprite("tile", {frame: 6}),
+            area(),
+            "corner",
+        ],
+    })
 
     onCollide("teleporter", "player", () => {
         go("Portfolio");

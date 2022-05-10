@@ -1,7 +1,10 @@
+import camera from "./camera";
+
 function player() {
 
     const SPEED = 200;
     const JUMPFORCE = 240;
+    let inDialog = true;
 
     const player = add([
         sprite("player"),
@@ -11,6 +14,30 @@ function player() {
         body(),
         "player"
     ])
+
+
+
+    /**
+     * Simple Camera Operations
+     */
+
+    camScale(0.7);
+
+
+    onKeyRelease("tab", () => {
+        console.log("Hi!");
+        debug.log(inDialog);
+        inDialog = !inDialog;
+        if(inDialog === true) {
+            camera(0);
+        } else if (inDialog === false) {
+            camera(1);
+        }
+    })
+
+    player.onUpdate(() => {
+        camPos(player.pos)
+    })
 
     /**
      * Animations
@@ -63,7 +90,6 @@ function player() {
     })
 
     onMouseDown(() => {
-        console.log("Swag");
         let distance = mousePos().x;
         let newPos = distance - (player.pos.x);
 
@@ -72,9 +98,8 @@ function player() {
             player.move(newPos, 0);
         } else
             player.flipX(false)
-            player.move(newPos, 0)
+            player.move(newPos, 0);
 
-        debug.log(newPos);
         if (player.isGrounded() && player.curAnim() !== "Run") {
             player.play("Run")
         }

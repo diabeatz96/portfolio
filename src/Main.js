@@ -2,6 +2,7 @@ import kaboom from "kaboom";
 import Home from "./room/Home";
 import Portfolio from "./room/Portfolio";
 
+
 kaboom({
     width: 1000,
     height: 500,
@@ -16,9 +17,11 @@ loadSprite("bean", "sprites/bean.png")
 loadAseprite("player", "sprites/player/Warrior-sheet.png", "sprites/player/Warrior.json")
 loadSprite("teleporter", "sprites/objects/teleporter.png")
 loadSprite("background", "sprites/background/temp.png");
+loadAseprite("tile", "sprites/objects/DarkForestTile.png", "sprites/objects/DarkForestTile.Json")
 
 
 scene("Home", Home)
 scene("Portfolio", Portfolio)
+
 
 go("Home");
