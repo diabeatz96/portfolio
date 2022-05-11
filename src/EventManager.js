@@ -1,9 +1,10 @@
 function EventManager() {
-        onCollide("player", "portal", () => {
+
+    onCollide("player", "portal", () => {
             const person = (get("player")[0])
 
             add([
-                text("Press E", {size: 100}),
+                text("Press E", {size: 30}),
                 pos(person.pos.x, person.pos.y - 40),
                 width(24),
                 height(24),

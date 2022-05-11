@@ -2812,7 +2812,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     onCollide("player", "portal", () => {
       const person = get("player")[0];
       add([
-        text("Press E", { size: 100 }),
+        text("Press E", { size: 30 }),
         pos(person.pos.x, person.pos.y - 40),
         width(24),
         height(24),
@@ -2826,12 +2826,29 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   }
   var EventManager_default = EventManager;
 
+  // src/components/cat.js
+  function cat() {
+    const cat2 = add([
+      sprite("cat", { anim: "Idle" }),
+      area(),
+      body(),
+      pos(130, 30),
+      scale(2)
+    ]);
+    const anims = ["Idle2", "CatLaugh", "Idle", "Kill", "Idle3"];
+    loop(5, () => {
+      cat2.play(anims[randi(0, 5)]);
+    });
+  }
+  var cat_default = cat;
+
   // src/room/Home.js
   function Home() {
     player_default();
     teleporter_default();
     background_default();
     EventManager_default();
+    cat_default();
     onKeyPress("backspace", () => {
       go("Portfolio");
     });
@@ -2858,7 +2875,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       "  {===}                    ",
       "                           ",
       "                           ",
-      "                {===}      ",
+      "                           ",
       " @                      @  ",
       "                           ",
       "                           ",
@@ -2908,7 +2925,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         "corner"
       ],
       "@": () => [
-        sprite("portal"),
+        sprite("portal", { anim: "IDLE" }),
         scale(1.4),
         area(),
         "portal"

@@ -2,12 +2,15 @@ import player from "../components/player";
 import teleporter from "../components/teleporter";
 import background from "../components/background";
 import EventManager from "../EventManager";
+import cat from "../components/cat";
 
 function Home() {
+
     player();
     teleporter();
     background();
     EventManager();
+    cat();
 
     onKeyPress("backspace", () => {
         go("Portfolio")
@@ -42,7 +45,7 @@ function Home() {
         "  {===}                    ",
         "                           ",
         "                           ",
-        "                {===}      ",
+        "                           ",
         " @                      @  ",
         "                           ",
         "                           ",
@@ -94,7 +97,7 @@ function Home() {
             "corner",
         ],
         "@": () => [
-            sprite("portal"),
+            sprite("portal", {anim: "IDLE"}),
             scale(1.4),
             area(),
             "portal"
