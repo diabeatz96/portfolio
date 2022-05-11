@@ -2730,7 +2730,6 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         player2.play("Run");
       }
     });
-    console.log(player2.isGrounded());
     onKeyDown("a", () => {
       player2.move(-SPEED, 0);
       player2.flipX(true);
@@ -2777,21 +2776,16 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     onKeyPress("backspace", () => {
       go("Home");
     });
-  }
-  var Portfolio_default = Portfolio;
-
-  // src/components/teleporter.js
-  function teleporter() {
-    const teleporter2 = add([
-      sprite("teleporter"),
-      origin("center"),
-      area({ scale: 0.3, offset: (-10, -30) }),
-      pos(100, 420),
-      scale(0.3),
-      "teleporter"
+    add([
+      pos(425, 50),
+      text("Portfolio", {
+        size: 32,
+        width: 320,
+        font: "sinko"
+      })
     ]);
   }
-  var teleporter_default = teleporter;
+  var Portfolio_default = Portfolio;
 
   // src/components/background.js
   function background() {
@@ -2809,18 +2803,53 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
 
   // src/EventManager.js
   function EventManager() {
-    onCollide("player", "portal", () => {
-      const person = get("player")[0];
-      add([
-        text("Press E", { size: 30 }),
+    const person = get("player")[0];
+    const portal = get("portal")[0];
+    const portal2 = get("portal2")[0];
+    console.log(portal);
+    console.log(person);
+    if (portal.pos.dist(person.pos) <= 200) {
+      const word = add([
+        text("Walk into portal", { size: 30 }),
         pos(person.pos.x, person.pos.y - 40),
         width(24),
         height(24),
         "E Text"
       ]);
       wait(3, () => {
-        console.log("It's Destroyed!");
+        destroy(word);
+      });
+    }
+    onCollide("player", "portal", () => {
+      let time = 0;
+      loop(1, () => {
         destroyAll("E Text");
+        const word = add([
+          text(`Transporting..${time++}`, { size: 20 }),
+          pos(person.pos.x, person.pos.y - 40),
+          width(24),
+          height(24),
+          "E Text"
+        ]);
+      });
+      wait(3, () => {
+        go("Portfolio");
+      });
+    });
+    onCollide("player", "portal2", () => {
+      let time = 0;
+      loop(1, () => {
+        destroyAll("E Text");
+        const word = add([
+          text(`Transporting..${time++}`, { size: 20 }),
+          pos(person.pos.x, person.pos.y - 40),
+          width(24),
+          height(24),
+          "E Text"
+        ]);
+      });
+      wait(3, () => {
+        go("AboutMe");
       });
     });
   }
@@ -2844,11 +2873,6 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
 
   // src/room/Home.js
   function Home() {
-    player_default();
-    teleporter_default();
-    background_default();
-    EventManager_default();
-    cat_default();
     onKeyPress("backspace", () => {
       go("Portfolio");
     });
@@ -2876,9 +2900,9 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       "                           ",
       "                           ",
       "                           ",
-      " @                      @  ",
       "                           ",
       "                           ",
+      " @                        #",
       "{=========================}",
       "---------------------------",
       "---------------------------",
@@ -2926,16 +2950,42 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       ],
       "@": () => [
         sprite("portal", { anim: "IDLE" }),
-        scale(1.4),
-        area(),
+        scale(1.3),
+        area({ scale: 0.3 }),
+        origin("center"),
         "portal"
+      ],
+      "#": () => [
+        sprite("portal", { anim: "IDLE" }),
+        scale(1.3),
+        area({ scale: 0.3 }),
+        origin("center"),
+        "portal2"
       ]
     });
-    onCollide("teleporter", "player", () => {
-      go("Portfolio");
-    });
+    player_default();
+    background_default();
+    EventManager_default();
+    cat_default();
   }
   var Home_default = Home;
+
+  // src/room/Aboutme.js
+  function AboutMe() {
+    console.log("Portfolio dog");
+    onKeyPress("backspace", () => {
+      go("Home");
+    });
+    add([
+      pos(425, 50),
+      text("AboutMe", {
+        size: 32,
+        width: 320,
+        font: "sinko"
+      })
+    ]);
+  }
+  var Aboutme_default = AboutMe;
 
   // src/Main.js
   no({
@@ -2954,5 +3004,6 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   loadAseprite("portal", "sprites/objects/Portal.png", "sprites/objects/Portal.Json");
   scene("Home", Home_default);
   scene("Portfolio", Portfolio_default);
+  scene("AboutMe", Aboutme_default);
   go("Home");
 })();

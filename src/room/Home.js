@@ -6,11 +6,6 @@ import cat from "../components/cat";
 
 function Home() {
 
-    player();
-    teleporter();
-    background();
-    EventManager();
-    cat();
 
     onKeyPress("backspace", () => {
         go("Portfolio")
@@ -46,9 +41,9 @@ function Home() {
         "                           ",
         "                           ",
         "                           ",
-        " @                      @  ",
         "                           ",
         "                           ",
+        " @                        #",
         "{=========================}",
         "---------------------------",
         "---------------------------",
@@ -98,15 +93,24 @@ function Home() {
         ],
         "@": () => [
             sprite("portal", {anim: "IDLE"}),
-            scale(1.4),
-            area(),
+            scale(1.3),
+            area({scale: 0.3}),
+            origin("center"),
             "portal"
+        ],
+        "#": () => [
+            sprite("portal", {anim: "IDLE"}),
+            scale(1.3),
+            area({scale: 0.3}),
+            origin("center"),
+            "portal2"
         ],
     })
 
-    onCollide("teleporter", "player", () => {
-        go("Portfolio");
-    })
+    player();
+    background();
+    EventManager();
+    cat();
 
 }
 

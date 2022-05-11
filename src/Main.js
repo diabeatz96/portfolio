@@ -1,7 +1,7 @@
 import kaboom from "kaboom";
 import Home from "./room/Home";
 import Portfolio from "./room/Portfolio";
-import EventManager from "./EventManager";
+import AboutMe from "./room/Aboutme";
 
 kaboom({
     width: 1000,
@@ -24,6 +24,6 @@ loadAseprite("portal", "sprites/objects/Portal.png", "sprites/objects/Portal.Jso
 
 scene("Home", Home)
 scene("Portfolio", Portfolio)
-
+scene("AboutMe", AboutMe)
 
 go("Home");

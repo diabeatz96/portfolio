@@ -1,24 +1,72 @@
 function EventManager() {
 
-    onCollide("player", "portal", () => {
-            const person = (get("player")[0])
+    const person = (get("player")[0])
+    const portal = (get("portal")[0])
+    const portal2 = (get("portal2")[0])
 
-            add([
-                text("Press E", {size: 30}),
+    console.log(portal)
+    console.log(person)
+
+    if(portal.pos.dist(person.pos) <= 200) {
+
+        const word = add([
+            text("Walk into portal", {size: 30}),
+            pos(person.pos.x, person.pos.y - 40),
+            width(24),
+            height(24),
+            "E Text"
+        ])
+
+        wait(3, () => {
+            destroy(word);
+        })
+
+    }
+
+
+    onCollide("player", "portal", () => {
+
+        let time = 0;
+
+        loop(1, () => {
+            destroyAll("E Text")
+            const word = add([
+                text(`Transporting..${time++}`, {size: 20}),
                 pos(person.pos.x, person.pos.y - 40),
                 width(24),
                 height(24),
                 "E Text"
             ])
-
-            wait(3, () => {
-                console.log("It's Destroyed!")
-                destroyAll("E Text")
-            })
         })
 
+        wait(3, () => {
+            go("Portfolio")
+        })
+    })
 
+
+
+
+    onCollide("player", "portal2", () => {
+        let time = 0;
+
+        loop(1, () => {
+            destroyAll("E Text")
+            const word = add([
+                text(`Transporting..${time++}`, {size: 20}),
+                pos(person.pos.x, person.pos.y - 40),
+                width(24),
+                height(24),
+                "E Text"
+            ])
+        })
+
+        wait(3, () => {
+            go("AboutMe")
+        })
+    })
 
 }
+
 
 export default EventManager;

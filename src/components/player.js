@@ -54,7 +54,6 @@ function player() {
     /**
      * Movement
      */
-    console.log(player.isGrounded());
 
     onKeyDown("a", () => {
         player.move(-SPEED, 0)
