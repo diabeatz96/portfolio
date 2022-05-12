@@ -6,7 +6,6 @@ function Vertical () {
         width(30),
         // Make the background centered on the screen
         pos(width() / 2, height() / 2),
-        origin(`${orig}`),
         // Allow the background to be scaled
         // Keep the background position fixed even when the camera moves
         fixed(),

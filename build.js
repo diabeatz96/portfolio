@@ -2760,11 +2760,11 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   var player_default = player;
 
   // src/components/background.js
-  function background(image, s, orig2) {
+  function background(image, s, orig) {
     let background2 = add([
       sprite(`${image}`),
       pos(width() / 2, height() / 2),
-      origin(`${orig2}`),
+      origin(`${orig}`),
       scale(s),
       z(-10),
       fixed(),
@@ -3170,7 +3170,6 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       height(10),
       width(30),
       pos(width() / 2, height() / 2),
-      origin(`${orig}`),
       fixed(),
       "vertical text"
     ]);
