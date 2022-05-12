@@ -1,11 +1,11 @@
-function background() {
+function background(image, s, orig) {
     let background = add([
-        sprite("background"),
+        sprite(`${image}`),
         // Make the background centered on the screen
         pos(width() / 2, height() / 2),
-        origin("center"),
+        origin(`${orig}`),
         // Allow the background to be scaled
-        scale(1),
+        scale(s),
         z(-10),
         // Keep the background position fixed even when the camera moves
         fixed(),

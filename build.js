@@ -2770,30 +2770,13 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   }
   var player_default = player;
 
-  // src/room/Portfolio.js
-  function Portfolio() {
-    console.log("Portfolio dog");
-    onKeyPress("backspace", () => {
-      go("Home");
-    });
-    add([
-      pos(425, 50),
-      text("Portfolio", {
-        size: 32,
-        width: 320,
-        font: "sinko"
-      })
-    ]);
-  }
-  var Portfolio_default = Portfolio;
-
   // src/components/background.js
-  function background() {
+  function background(image, s, orig) {
     let background2 = add([
-      sprite("background"),
+      sprite(`${image}`),
       pos(width() / 2, height() / 2),
-      origin("center"),
-      scale(1),
+      origin(`${orig}`),
+      scale(s),
       z(-10),
       fixed(),
       "background"
@@ -2806,22 +2789,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     const person = get("player")[0];
     const portal = get("portal")[0];
     const portal2 = get("portal2")[0];
-    console.log(portal);
-    console.log(person);
-    if (portal.pos.dist(person.pos) <= 200) {
-      const word = add([
-        text("Walk into portal", { size: 30 }),
-        pos(person.pos.x, person.pos.y - 40),
-        width(24),
-        height(24),
-        "E Text"
-      ]);
-      wait(3, () => {
-        destroy(word);
-      });
-    }
     onCollide("player", "portal", () => {
-      let time = 0;
+      let time = 1;
       loop(1, () => {
         destroyAll("E Text");
         const word = add([
@@ -2832,12 +2801,13 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
           "E Text"
         ]);
       });
-      wait(3, () => {
+      wait(2, () => {
+        console.log(get("Portfolio"));
         go("Portfolio");
       });
     });
     onCollide("player", "portal2", () => {
-      let time = 0;
+      let time = 1;
       loop(1, () => {
         destroyAll("E Text");
         const word = add([
@@ -2848,12 +2818,131 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
           "E Text"
         ]);
       });
-      wait(3, () => {
+      wait(2, () => {
         go("AboutMe");
+      });
+    });
+    onCollide("player", "portal3", () => {
+      let time = 1;
+      loop(1, () => {
+        destroyAll("E Text");
+        const word = add([
+          text(`Transporting..${time++}`, { size: 20 }),
+          pos(person.pos.x, person.pos.y - 40),
+          width(24),
+          height(24),
+          "E Text"
+        ]);
+      });
+      wait(2, () => {
+        go("Home");
       });
     });
   }
   var EventManager_default = EventManager;
+
+  // src/components/picture.js
+  function picture(image, size, position) {
+    add([
+      sprite(`${image}`),
+      scale(size),
+      pos(position),
+      outline(500, RED),
+      area(),
+      `${image}1`
+    ]);
+    onClick(`${image}1`, () => {
+      window.open("https://google.com");
+    });
+    onHover(`${image}1`, (c) => {
+      console.log("HOVER");
+      cursor("pointer");
+    });
+  }
+  var picture_default = picture;
+
+  // src/room/Portfolio.js
+  function Portfolio() {
+    console.log("Portfolio dog");
+    onKeyPress("backspace", () => {
+      go("Home");
+    });
+    addLevel([
+      "                           ",
+      "                           ",
+      "                           ",
+      "                           ",
+      "                           ",
+      "                           ",
+      "                           ",
+      "                           ",
+      "                           ",
+      " @                                                                              #",
+      "{================================================================================}"
+    ], {
+      width: 32,
+      height: 32,
+      "=": () => [
+        sprite("tile", { frame: 1 }),
+        area(),
+        solid()
+      ],
+      "{": () => [
+        sprite("tile", { frame: 0, animSpeed: 0.3 }),
+        area()
+      ],
+      "}": () => [
+        sprite("tile", { frame: 2 }),
+        area(),
+        "corner"
+      ],
+      "$": () => [
+        area(),
+        "danger"
+      ],
+      "-": () => [
+        sprite("tile", { frame: 4 }),
+        area(),
+        solid()
+      ],
+      "[": () => [
+        sprite("tile", { frame: 5 }),
+        area()
+      ],
+      "]": () => [
+        sprite("tile", { frame: 6 }),
+        area(),
+        "corner"
+      ],
+      "@": () => [
+        sprite("portal", { anim: "IDLE" }),
+        scale(1.3),
+        area({ scale: 0.3 }),
+        origin("center"),
+        "portal2"
+      ],
+      "#": () => [
+        sprite("portal", { anim: "IDLE" }),
+        scale(1.3),
+        area({ scale: 0.3 }),
+        origin("center"),
+        "portal3"
+      ]
+    });
+    add([
+      pos(425, 50),
+      text("Portfolio", {
+        size: 32,
+        width: 320,
+        font: "sinko"
+      })
+    ]);
+    picture_default("firstsign", 0.1, vec2(900, -20));
+    player_default();
+    background_default("background1", 3, "center");
+    EventManager_default();
+  }
+  var Portfolio_default = Portfolio;
 
   // src/components/cat.js
   function cat() {
@@ -2876,6 +2965,26 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     onKeyPress("backspace", () => {
       go("Portfolio");
     });
+    add([
+      sprite("AKey", { anim: "Loop", animSpeed: 0.6 }),
+      pos(200, -20),
+      scale(2)
+    ]);
+    add([
+      sprite("DKey", { anim: "Loop", animSpeed: 0.6 }),
+      pos(250, -20),
+      scale(2)
+    ]);
+    add([
+      sprite("LeftKey", { anim: "Loop", animSpeed: 0.6 }),
+      pos(200, 20),
+      scale(2)
+    ]);
+    add([
+      sprite("RightKey", { anim: "Loop", animSpeed: 0.6 }),
+      pos(250, 20),
+      scale(2)
+    ]);
     add([
       pos(425, 50),
       text("Home", {
@@ -2964,7 +3073,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       ]
     });
     player_default();
-    background_default();
+    background_default("background", 1, "center");
     EventManager_default();
     cat_default();
   }
@@ -2984,6 +3093,80 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         font: "sinko"
       })
     ]);
+    addLevel([
+      "                           ",
+      "                           ",
+      "                           ",
+      "  {===}                    ",
+      "                           ",
+      "                           ",
+      "                           ",
+      "                           ",
+      "                           ",
+      " @                        #",
+      "{=========================}",
+      "---------------------------",
+      "---------------------------",
+      "---------------------------",
+      "---------------------------",
+      "---------------------------",
+      "---------------------------",
+      "---------------------------",
+      "---------------------------"
+    ], {
+      width: 32,
+      height: 32,
+      "=": () => [
+        sprite("tile", { frame: 1 }),
+        area(),
+        solid()
+      ],
+      "{": () => [
+        sprite("tile", { frame: 0, animSpeed: 0.3 }),
+        area()
+      ],
+      "}": () => [
+        sprite("tile", { frame: 2 }),
+        area(),
+        "corner"
+      ],
+      "$": () => [
+        sprite("tile", { frame: 5 }),
+        area(),
+        "danger"
+      ],
+      "-": () => [
+        sprite("tile", { frame: 4 }),
+        area(),
+        solid()
+      ],
+      "[": () => [
+        sprite("tile", { frame: 5 }),
+        area()
+      ],
+      "]": () => [
+        sprite("tile", { frame: 6 }),
+        area(),
+        "corner"
+      ],
+      "@": () => [
+        sprite("portal", { anim: "IDLE" }),
+        scale(1.3),
+        area({ scale: 0.3 }),
+        origin("center"),
+        "portal3"
+      ],
+      "#": () => [
+        sprite("portal", { anim: "IDLE" }),
+        scale(1.3),
+        area({ scale: 0.3 }),
+        origin("center"),
+        "portal"
+      ]
+    });
+    player_default();
+    background_default("background2", 1.7, "center");
+    EventManager_default();
   }
   var Aboutme_default = AboutMe;
 
@@ -2995,10 +3178,17 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     stretch: true
   });
   gravity(640);
+  loadAseprite("AKey", "sprites/misc/A.png", "sprites/misc/A.json");
+  loadAseprite("DKey", "sprites/misc/D.png", "sprites/misc/D.json");
+  loadAseprite("LeftKey", "sprites/misc/ALeft.png", "sprites/misc/ARROWLEFT.json");
+  loadAseprite("RightKey", "sprites/misc/ARight.png", "sprites/misc/ARROWRIGHT.json");
   loadSprite("bean", "sprites/bean.png");
+  loadSprite("firstsign", "sprites/misc/FirstSign.png");
   loadAseprite("player", "sprites/player/Warrior-sheet.png", "sprites/player/Warrior.json");
   loadSprite("teleporter", "sprites/objects/teleporter.png");
   loadSprite("background", "sprites/background/temp.png");
+  loadSprite("background1", "sprites/background/Background2.png");
+  loadSprite("background2", "sprites/background/Background.png");
   loadAseprite("tile", "sprites/objects/DarkForestTile.png", "sprites/objects/DarkForestTile.Json");
   loadAseprite("cat", "sprites/objects/Cat.png", "sprites/objects/Cat.Json");
   loadAseprite("portal", "sprites/objects/Portal.png", "sprites/objects/Portal.Json");

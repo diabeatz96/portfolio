@@ -12,6 +12,31 @@ function Home() {
     })
 
 
+    /*
+        UNIQUE POSITIONS IN HOME PAGE BEING ADDED.
+     */
+
+    add([
+        sprite("AKey", {anim: "Loop", animSpeed: 0.6}),
+        pos(200, -20),
+        scale(2)
+    ])
+    add([
+        sprite("DKey", {anim: "Loop", animSpeed: 0.6}),
+        pos(250, -20),
+        scale(2)
+    ])
+    add([
+        sprite("LeftKey", {anim: "Loop", animSpeed: 0.6}),
+        pos(200, 20),
+        scale(2)
+    ])
+    add([
+        sprite("RightKey", {anim: "Loop", animSpeed: 0.6}),
+        pos(250, 20),
+        scale(2)
+    ])
+
     add([
         pos(425, 50),
         text("Home", {
@@ -29,6 +54,18 @@ function Home() {
             font: "sinko", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
         }),
     ])
+
+    /*
+    add([
+        pos(950, 130),
+        text("A -> Left D -> Right Click to move", {
+            size: 16, // 48 pixels tall
+            width: 145, // it'll wrap to next line when width exceeds this value
+            font: "sinko", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
+        }),
+    ])
+     */
+
 
 
 
@@ -108,7 +145,7 @@ function Home() {
     })
 
     player();
-    background();
+    background("background", 1, "center");
     EventManager();
     cat();
 
