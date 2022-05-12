@@ -1,5 +1,5 @@
 function picture(image, size, position) {
-    add([
+   add([
         sprite(`${image}`),
         scale(size),
         pos(position),
@@ -12,8 +12,15 @@ function picture(image, size, position) {
         window.open("https://google.com")
     })
 
+
+    const pic = get(`${image}1`)[0]
+
+    pic.onUpdate(() => {
+        pic.scale = `${size}`
+    })
+
+
     onHover(`${image}1`, (c) => {
-        console.log("HOVER");
         cursor("pointer");
     })
 }

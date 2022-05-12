@@ -2698,7 +2698,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
 
   // src/components/player.js
   function player() {
-    const SPEED = 200;
+    let SPEED = 200;
     const JUMPFORCE = 240;
     let inDialog = true;
     const player2 = add([
@@ -2722,6 +2722,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     });
     player2.onUpdate(() => {
       camPos(player2.pos);
+      cursor("default");
     });
     player2.onGround(() => {
       if (!isKeyDown("a") && !isKeyDown("d")) {
@@ -2730,42 +2731,30 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         player2.play("Run");
       }
     });
-    onKeyDown("a", () => {
+    onKeyDown(["a", "left"], () => {
       player2.move(-SPEED, 0);
       player2.flipX(true);
       if (player2.isGrounded() && player2.curAnim() !== "Run") {
         player2.play("Run");
       }
     });
-    onKeyDown("d", () => {
+    onKeyDown(["d", "right"], () => {
       player2.move(SPEED, 0);
       player2.flipX(false);
       if (player2.isGrounded() && player2.curAnim() !== "Run") {
         player2.play("Run");
       }
     });
-    onKeyRelease(["a", "d"], () => {
-      if (player2.isGrounded() && !isKeyDown("a") && !isKeyDown("d")) {
+    onKeyRelease(["a", "d", "left", "right"], () => {
+      if (player2.isGrounded() && (!isKeyDown("a") && !isKeyDown("d")) || !isKeyDown("left") && !isKeyDown("right")) {
         player2.play("Idle");
       }
     });
-    onMouseRelease(() => {
-      if (player2.isGrounded() && !isKeyDown("a") && !isKeyDown("d")) {
-        player2.play("Idle");
-      }
+    onKeyPress("space", () => {
+      SPEED = SPEED * 2;
     });
-    onMouseDown(() => {
-      let distance = mousePos().x;
-      let newPos = distance - player2.pos.x;
-      if (player2.pos.x > mousePos().x) {
-        player2.flipX(true);
-        player2.move(newPos, 0);
-      } else
-        player2.flipX(false);
-      player2.move(newPos, 0);
-      if (player2.isGrounded() && player2.curAnim() !== "Run") {
-        player2.play("Run");
-      }
+    onKeyRelease("space", () => {
+      SPEED = 200;
     });
   }
   var player_default = player;
@@ -2854,8 +2843,11 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     onClick(`${image}1`, () => {
       window.open("https://google.com");
     });
+    const pic = get(`${image}1`)[0];
+    pic.onUpdate(() => {
+      pic.scale = `${size}`;
+    });
     onHover(`${image}1`, (c) => {
-      console.log("HOVER");
       cursor("pointer");
     });
   }
@@ -2938,6 +2930,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       })
     ]);
     picture_default("firstsign", 0.1, vec2(900, -20));
+    picture_default("guessgame", 0.25, vec2(1400, -20));
     player_default();
     background_default("background1", 3, "center");
     EventManager_default();
@@ -3184,6 +3177,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   loadAseprite("RightKey", "sprites/misc/ARight.png", "sprites/misc/ARROWRIGHT.json");
   loadSprite("bean", "sprites/bean.png");
   loadSprite("firstsign", "sprites/misc/FirstSign.png");
+  loadSprite("guessgame", "sprites/misc/guessgame.png");
   loadAseprite("player", "sprites/player/Warrior-sheet.png", "sprites/player/Warrior.json");
   loadSprite("teleporter", "sprites/objects/teleporter.png");
   loadSprite("background", "sprites/background/temp.png");

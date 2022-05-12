@@ -90,6 +90,7 @@ function Portfolio() {
 
 
     picture("firstsign", 0.1, vec2(900, -20));
+    picture("guessgame", 0.25, vec2(1400, -20));
     player();
     background("background1", 3, "center");
     EventManager();

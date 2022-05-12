@@ -2,7 +2,7 @@ import camera from "./camera";
 
 function player() {
 
-    const SPEED = 200;
+    let SPEED = 200;
     const JUMPFORCE = 240;
     let inDialog = true;
 
@@ -36,7 +36,8 @@ function player() {
     })
 
     player.onUpdate(() => {
-        camPos(player.pos)
+        camPos(player.pos);
+        cursor("default");
     })
 
     /**
@@ -55,7 +56,7 @@ function player() {
      * Movement
      */
 
-    onKeyDown("a", () => {
+    onKeyDown(["a", "left"], () => {
         player.move(-SPEED, 0)
         player.flipX(true)
         if (player.isGrounded() && player.curAnim() !== "Run") {
@@ -63,7 +64,7 @@ function player() {
         }
     })
 
-    onKeyDown("d", () => {
+    onKeyDown(["d", "right"], () => {
         player.move(SPEED, 0)
         player.flipX(false)
         if (player.isGrounded() && player.curAnim() !== "Run") {
@@ -71,23 +72,29 @@ function player() {
         }
     })
 
-    onKeyRelease(["a", "d"], () => {
+    onKeyRelease(["a", "d", "left", "right"], () => {
         // Only reset to "idle" if player is not holding any of these keys
-        if (player.isGrounded() && !isKeyDown("a") && !isKeyDown("d")) {
+        if (player.isGrounded() && (!isKeyDown("a") && !isKeyDown("d")) || (!isKeyDown("left") && !isKeyDown("right"))) {
             player.play("Idle")
         }
     })
 
+    onKeyPress("space", () => {
+        SPEED = SPEED * 2;
+    })
+
+    onKeyRelease("space", () => {
+        SPEED = 200;
+    })
     /**
      * Mouse Movement
      */
 
+    /*
     onMouseRelease(() => {
         if (player.isGrounded() && !isKeyDown("a") && !isKeyDown("d")) {
             player.play("Idle")
         }
-    })
-
     onMouseDown(() => {
         let distance = mousePos().x;
         let newPos = distance - (player.pos.x);
@@ -102,8 +109,7 @@ function player() {
         if (player.isGrounded() && player.curAnim() !== "Run") {
             player.play("Run")
         }
-    })
-
+    }) */
 
 }
 

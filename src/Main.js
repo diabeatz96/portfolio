@@ -19,16 +19,17 @@ loadAseprite("LeftKey", "sprites/misc/ALeft.png", "sprites/misc/ARROWLEFT.json")
 loadAseprite("RightKey", "sprites/misc/ARight.png", "sprites/misc/ARROWRIGHT.json")
 
 
-loadSprite("bean", "sprites/bean.png")
-loadSprite("firstsign", "sprites/misc/FirstSign.png")
-loadAseprite("player", "sprites/player/Warrior-sheet.png", "sprites/player/Warrior.json")
-loadSprite("teleporter", "sprites/objects/teleporter.png")
+loadSprite("bean", "sprites/bean.png");
+loadSprite("firstsign", "sprites/misc/FirstSign.png");
+loadSprite("guessgame", "sprites/misc/guessgame.png");
+loadAseprite("player", "sprites/player/Warrior-sheet.png", "sprites/player/Warrior.json");
+loadSprite("teleporter", "sprites/objects/teleporter.png");
 loadSprite("background", "sprites/background/temp.png");
 loadSprite("background1", "sprites/background/Background2.png");
 loadSprite("background2", "sprites/background/Background.png");
-loadAseprite("tile", "sprites/objects/DarkForestTile.png", "sprites/objects/DarkForestTile.Json")
-loadAseprite("cat", "sprites/objects/Cat.png", "sprites/objects/Cat.Json")
-loadAseprite("portal", "sprites/objects/Portal.png", "sprites/objects/Portal.Json")
+loadAseprite("tile", "sprites/objects/DarkForestTile.png", "sprites/objects/DarkForestTile.Json");
+loadAseprite("cat", "sprites/objects/Cat.png", "sprites/objects/Cat.Json");
+loadAseprite("portal", "sprites/objects/Portal.png", "sprites/objects/Portal.Json");
 
 
 scene("Home", Home)
