@@ -2760,11 +2760,11 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   var player_default = player;
 
   // src/components/background.js
-  function background(image, s, orig) {
+  function background(image, s, orig2) {
     let background2 = add([
       sprite(`${image}`),
       pos(width() / 2, height() / 2),
-      origin(`${orig}`),
+      origin(`${orig2}`),
       scale(s),
       z(-10),
       fixed(),
@@ -3163,6 +3163,20 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   }
   var Aboutme_default = AboutMe;
 
+  // src/room/Vertical.js
+  function Vertical() {
+    add([
+      text("Please use landscape when viewing this website! Reload Page When Flipped", { size: 20 }),
+      height(10),
+      width(30),
+      pos(width() / 2, height() / 2),
+      origin(`${orig}`),
+      fixed(),
+      "vertical text"
+    ]);
+  }
+  var Vertical_default = Vertical;
+
   // src/Main.js
   no({
     width: 1e3,
@@ -3189,5 +3203,10 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   scene("Home", Home_default);
   scene("Portfolio", Portfolio_default);
   scene("AboutMe", Aboutme_default);
-  go("Home");
+  scene("Vertical", Vertical_default);
+  if (screen.availHeight > screen.availWidth) {
+    go("Vertical");
+  } else {
+    go("Home");
+  }
 })();

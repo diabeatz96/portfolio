@@ -2,6 +2,7 @@ import kaboom from "kaboom";
 import Home from "./room/Home";
 import Portfolio from "./room/Portfolio";
 import AboutMe from "./room/Aboutme";
+import Vertical from "./room/Vertical"
 
 kaboom({
     width: 1000,
@@ -9,6 +10,8 @@ kaboom({
     font: "sinko",
     stretch: true,
 });
+
+
 
 gravity(640);
 
@@ -35,5 +38,10 @@ loadAseprite("portal", "sprites/objects/Portal.png", "sprites/objects/Portal.Jso
 scene("Home", Home)
 scene("Portfolio", Portfolio)
 scene("AboutMe", AboutMe)
+scene("Vertical", Vertical)
 
-go("Home");
+if(screen.availHeight > screen.availWidth){
+    go("Vertical")
+} else {
+    go("Home");
+}
