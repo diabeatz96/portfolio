@@ -2696,6 +2696,61 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   }
   var camera_default = camera;
 
+  // src/components/UI.js
+  var clickSpeed = 240;
+  function UI() {
+    const left = add([
+      sprite("LeftKey", {}),
+      pos(750, 400),
+      scale(3),
+      z(1),
+      area(),
+      fixed(),
+      "left"
+    ]);
+    const right = add([
+      sprite("RightKey", {}),
+      pos(850, 400),
+      scale(3),
+      z(1),
+      area(),
+      fixed(),
+      "right"
+    ]);
+    const bg = add([
+      rect(200, 75),
+      pos(830, 430),
+      origin("center"),
+      opacity(0.3),
+      outline(4, WHITE),
+      z(0),
+      fixed()
+    ]);
+    const player2 = get("player")[0];
+    const leftz = get("left")[0];
+    const rightz = get("right")[0];
+    console.log(player2, leftz, rightz);
+    onHover("left", () => {
+      if (mouseIsDown() || isTouch()) {
+        player2.move(-clickSpeed, 0);
+        player2.flipX(true);
+        if (player2.isGrounded() && player2.curAnim() !== "Run") {
+          player2.play("Run");
+        }
+      }
+    });
+    onHover("right", () => {
+      if (mouseIsDown() || isTouch()) {
+        player2.move(clickSpeed, 0);
+        player2.flipX(false);
+        if (player2.isGrounded() && player2.curAnim() !== "Run") {
+          player2.play("Run");
+        }
+      }
+    });
+  }
+  var UI_default = UI;
+
   // src/components/player.js
   function player() {
     let SPEED = 200;
@@ -2756,6 +2811,17 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     onKeyRelease("space", () => {
       SPEED = 200;
     });
+    onMouseRelease(() => {
+      if (player2.isGrounded()) {
+        player2.play("Idle");
+      }
+    });
+    onTouchEnd(() => {
+      if (player2.isGrounded()) {
+        player2.play("Idle");
+      }
+    });
+    UI_default();
   }
   var player_default = player;
 
@@ -3166,11 +3232,10 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   // src/room/Vertical.js
   function Vertical() {
     add([
-      text("Please use landscape when viewing this website! Reload Page When Flipped", { size: 20 }),
+      text("Please use landscape when viewing this website! Reload Page When Flipped", { size: 30 }),
       height(10),
       width(30),
       pos(width() / 2, height() / 2),
-      fixed(),
       "vertical text"
     ]);
   }

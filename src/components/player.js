@@ -1,4 +1,5 @@
 import camera from "./camera";
+import UI from "./UI";
 
 function player() {
 
@@ -90,27 +91,19 @@ function player() {
      * Mouse Movement
      */
 
-    /*
+
     onMouseRelease(() => {
-        if (player.isGrounded() && !isKeyDown("a") && !isKeyDown("d")) {
+        if (player.isGrounded()) {
             player.play("Idle")
         }
-    onMouseDown(() => {
-        let distance = mousePos().x;
-        let newPos = distance - (player.pos.x);
+    })
 
-       if (player.pos.x > mousePos().x) {
-            player.flipX(true)
-            player.move(newPos, 0);
-        } else
-            player.flipX(false)
-            player.move(newPos, 0);
-
-        if (player.isGrounded() && player.curAnim() !== "Run") {
-            player.play("Run")
+    onTouchEnd(() => {
+        if (player.isGrounded()) {
+            player.play("Idle")
         }
-    }) */
-
+    })
+    UI();
 }
 
 export default player;
