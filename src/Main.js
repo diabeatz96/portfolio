@@ -4,6 +4,16 @@ import Portfolio from "./room/Portfolio";
 import AboutMe from "./room/Aboutme";
 import Vertical from "./room/Vertical"
 
+function isMobile() {
+    try{ document.createEvent("TouchEvent"); return true; }
+    catch(e){ return false; }
+}
+
+if (isMobile()) {
+    window.location.replace("https://adamkostandy.netlify.app/mobile");
+}
+
+
 kaboom({
     width: 1000,
     height: 500,
@@ -11,14 +21,6 @@ kaboom({
     stretch: true,
 });
 
-function isMobile() {
-    try{ document.createEvent("TouchEvent"); return true; }
-    catch(e){ return false; }
-}
-
-if (isMobile()) {
-    window.open("/mobile.html")
-}
 
 gravity(640);
 
