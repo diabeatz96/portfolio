@@ -4,6 +4,7 @@ import Portfolio from "./room/Portfolio";
 import AboutMe from "./room/Aboutme";
 import Vertical from "./room/Vertical"
 
+
 function isMobile() {
     try{ document.createEvent("TouchEvent"); return true; }
     catch(e){ return false; }
@@ -12,7 +13,6 @@ function isMobile() {
 if (isMobile()) {
     window.location.replace("https://adamkostandy.netlify.app/mobile");
 }
-
 
 kaboom({
     width: 1000,
@@ -49,3 +49,4 @@ scene("Portfolio", Portfolio)
 scene("AboutMe", AboutMe)
 scene("Vertical", Vertical)
 
+go("Home")

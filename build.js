@@ -3242,6 +3242,17 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   var Vertical_default = Vertical;
 
   // src/Main.js
+  function isMobile() {
+    try {
+      document.createEvent("TouchEvent");
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+  if (isMobile()) {
+    window.location.replace("https://adamkostandy.netlify.app/mobile");
+  }
   no({
     width: 1e3,
     height: 500,
@@ -3268,9 +3279,5 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   scene("Portfolio", Portfolio_default);
   scene("AboutMe", Aboutme_default);
   scene("Vertical", Vertical_default);
-  if (screen.availHeight > screen.availWidth) {
-    go("Vertical");
-  } else {
-    go("Home");
-  }
+  go("Home");
 })();
