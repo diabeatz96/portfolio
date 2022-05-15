@@ -103,6 +103,7 @@ function player() {
             player.play("Idle")
         }
     })
+
     UI();
 }
 

@@ -11,7 +11,14 @@ kaboom({
     stretch: true,
 });
 
+function isMobile() {
+    try{ document.createEvent("TouchEvent"); return true; }
+    catch(e){ return false; }
+}
 
+if (isMobile()) {
+    window.open("/mobile.html")
+}
 
 gravity(640);
 
@@ -40,8 +47,3 @@ scene("Portfolio", Portfolio)
 scene("AboutMe", AboutMe)
 scene("Vertical", Vertical)
 
-if(screen.availHeight > screen.availWidth){
-    go("Vertical")
-} else {
-    go("Home");
-}
