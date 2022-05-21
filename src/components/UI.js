@@ -34,25 +34,35 @@ function UI() {
     ])
 
     const player = (get("player"))[0];
-    const leftz = (get("left"))[0];
-    const rightz = (get("right"))[0];
 
-    console.log(player, leftz, rightz);
+
+    left.onUpdate(() => {
+        left.frame = 0;
+
+    })
+
+    right.onUpdate(() => {
+        right.frame = 0;
+
+    })
 
     onHover("left", (() => {
         if(mouseIsDown()) {
             player.move(-clickSpeed, 0)
             player.flipX(true)
+            left.frame = 1;
             if (player.isGrounded() && player.curAnim() !== "Run") {
                 player.play("Run")
             }
         }
     }))
 
+
     onHover("right", (() => {
         if(mouseIsDown()) {
             player.move(clickSpeed, 0)
             player.flipX(false)
+            right.frame = 1;
             if (player.isGrounded() && player.curAnim() !== "Run") {
                 player.play("Run")
             }

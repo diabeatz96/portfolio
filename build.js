@@ -2727,13 +2727,17 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       fixed()
     ]);
     const player2 = get("player")[0];
-    const leftz = get("left")[0];
-    const rightz = get("right")[0];
-    console.log(player2, leftz, rightz);
+    left.onUpdate(() => {
+      left.frame = 0;
+    });
+    right.onUpdate(() => {
+      right.frame = 0;
+    });
     onHover("left", () => {
       if (mouseIsDown()) {
         player2.move(-clickSpeed, 0);
         player2.flipX(true);
+        left.frame = 1;
         if (player2.isGrounded() && player2.curAnim() !== "Run") {
           player2.play("Run");
         }
@@ -2743,6 +2747,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       if (mouseIsDown()) {
         player2.move(clickSpeed, 0);
         player2.flipX(false);
+        right.frame = 1;
         if (player2.isGrounded() && player2.curAnim() !== "Run") {
           player2.play("Run");
         }
@@ -3208,7 +3213,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       "                           ",
       "                           ",
       "                           ",
-      "  {===}                    ",
+      "                           ",
       "                           ",
       "                           ",
       "                           ",
