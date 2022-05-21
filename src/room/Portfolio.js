@@ -88,9 +88,98 @@ function Portfolio() {
         }),
     ])
 
+    add([
+        pos(350, 100),
+        text("Walk to the right to explore my projects!", {
+            size: 24, // 48 pixels tall
+            width: 500, // it'll wrap to next line when width exceeds this value
+            font: "sinko", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
+        }),
+    ])
+
+    /*
+          Project 1
+
+          Project First Sign - First Sign.
+     */
+    add([
+        pos(900, -45),
+        text("The First Sign", {
+            size: 18, 
+            width: 320, 
+            font: "sinko", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
+        }),
+    ])
+
+    add([
+        pos(900, 180),
+        text("A Horoscope application with daily updates for the sign of aries.", {
+            size: 18,
+            width: 400,
+            font: "sinko", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
+        }),
+    ])
+
 
     picture("firstsign", 0.1, vec2(900, -20));
-    picture("guessgame", 0.25, vec2(1400, -20));
+
+    /*
+
+        Project 2
+
+        Project Guessing Game
+
+     */
+
+    add([
+        pos(1400, -45),
+        text("Guessing Game", {
+            size: 18,
+            width: 320,
+            font: "sinko", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
+        }),
+    ])
+
+    add([
+        pos(1400, 190),
+        text("Web application for playing a guessing game.", {
+            size: 18,
+            width: 400,
+            font: "sinko", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
+        }),
+    ])
+
+
+    picture("guessgame", 0.23, vec2(1400, -20));
+
+    /*
+        Project 3.
+
+        Project Zeus!
+     */
+
+    add([
+        pos(2000, -45),
+        text("Project Zeus", {
+            size: 18,
+            width: 320,
+            font: "sinko", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
+        }),
+    ])
+
+    add([
+        pos(2000, 200),
+        text("A peer-to-peer coding platform to grade each others code.", {
+            size: 18,
+            width: 400,
+            font: "sinko", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
+        }),
+    ])
+
+    picture("projectzeus", 0.20, vec2(2000, -20))
+
+
+
     player();
     background("background1", 3, "center");
     EventManager();

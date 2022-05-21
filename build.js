@@ -2731,7 +2731,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     const rightz = get("right")[0];
     console.log(player2, leftz, rightz);
     onHover("left", () => {
-      if (mouseIsDown() || isTouch()) {
+      if (mouseIsDown()) {
         player2.move(-clickSpeed, 0);
         player2.flipX(true);
         if (player2.isGrounded() && player2.curAnim() !== "Run") {
@@ -2740,7 +2740,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       }
     });
     onHover("right", () => {
-      if (mouseIsDown() || isTouch()) {
+      if (mouseIsDown()) {
         player2.move(clickSpeed, 0);
         player2.flipX(false);
         if (player2.isGrounded() && player2.curAnim() !== "Run") {
@@ -2812,11 +2812,6 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       SPEED = 200;
     });
     onMouseRelease(() => {
-      if (player2.isGrounded()) {
-        player2.play("Idle");
-      }
-    });
-    onTouchEnd(() => {
       if (player2.isGrounded()) {
         player2.play("Idle");
       }
@@ -2995,8 +2990,65 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         font: "sinko"
       })
     ]);
+    add([
+      pos(350, 100),
+      text("Walk to the right to explore my projects!", {
+        size: 24,
+        width: 500,
+        font: "sinko"
+      })
+    ]);
+    add([
+      pos(900, -45),
+      text("The First Sign", {
+        size: 18,
+        width: 320,
+        font: "sinko"
+      })
+    ]);
+    add([
+      pos(900, 180),
+      text("A Horoscope application with daily updates for the sign of aries.", {
+        size: 18,
+        width: 400,
+        font: "sinko"
+      })
+    ]);
     picture_default("firstsign", 0.1, vec2(900, -20));
-    picture_default("guessgame", 0.25, vec2(1400, -20));
+    add([
+      pos(1400, -45),
+      text("Guessing Game", {
+        size: 18,
+        width: 320,
+        font: "sinko"
+      })
+    ]);
+    add([
+      pos(1400, 190),
+      text("Web application for playing a guessing game.", {
+        size: 18,
+        width: 400,
+        font: "sinko"
+      })
+    ]);
+    picture_default("guessgame", 0.23, vec2(1400, -20));
+    add([
+      pos(2e3, -45),
+      text("Project Zeus", {
+        size: 18,
+        width: 320,
+        font: "sinko"
+      })
+    ]);
+    add([
+      pos(2e3, 200),
+      text("A peer-to-peer coding platform to grade each others code.", {
+        size: 18,
+        width: 400,
+        font: "sinko"
+      })
+    ]);
+    picture_default("projectzeus", 0.2, vec2(2e3, -20));
     player_default();
     background_default("background1", 3, "center");
     EventManager_default();
@@ -3265,6 +3317,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   loadAseprite("LeftKey", "sprites/misc/ALeft.png", "sprites/misc/ARROWLEFT.json");
   loadAseprite("RightKey", "sprites/misc/ARight.png", "sprites/misc/ARROWRIGHT.json");
   loadSprite("bean", "sprites/bean.png");
+  loadSprite("projectzeus", "sprites/misc/projectzeus.png");
   loadSprite("firstsign", "sprites/misc/FirstSign.png");
   loadSprite("guessgame", "sprites/misc/guessgame.png");
   loadAseprite("player", "sprites/player/Warrior-sheet.png", "sprites/player/Warrior.json");

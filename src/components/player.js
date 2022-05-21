@@ -87,18 +87,13 @@ function player() {
     onKeyRelease("space", () => {
         SPEED = 200;
     })
+
     /**
      * Mouse Movement
      */
 
 
     onMouseRelease(() => {
-        if (player.isGrounded()) {
-            player.play("Idle")
-        }
-    })
-
-    onTouchEnd(() => {
         if (player.isGrounded()) {
             player.play("Idle")
         }

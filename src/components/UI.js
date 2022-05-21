@@ -40,7 +40,7 @@ function UI() {
     console.log(player, leftz, rightz);
 
     onHover("left", (() => {
-        if(mouseIsDown() || isTouch()) {
+        if(mouseIsDown()) {
             player.move(-clickSpeed, 0)
             player.flipX(true)
             if (player.isGrounded() && player.curAnim() !== "Run") {
@@ -50,7 +50,7 @@ function UI() {
     }))
 
     onHover("right", (() => {
-        if(mouseIsDown() || isTouch()) {
+        if(mouseIsDown()) {
             player.move(clickSpeed, 0)
             player.flipX(false)
             if (player.isGrounded() && player.curAnim() !== "Run") {
