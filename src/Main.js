@@ -31,6 +31,12 @@ loadAseprite("LeftKey", "sprites/misc/ALeft.png", "sprites/misc/ARROWLEFT.json")
 loadAseprite("RightKey", "sprites/misc/ARight.png", "sprites/misc/ARROWRIGHT.json")
 
 
+loadSprite("github", "sprites/misc/github.png")
+loadSprite("resume", "sprites/misc/resume.png")
+loadSprite("linkedin", "sprites/misc/linkedin.png")
+loadSprite("twitter", "sprites/misc/twitter.png")
+
+
 loadSprite("me", "sprites/aboutme/me.jpg");
 loadSprite("projectzeus", "sprites/misc/projectzeus.png")
 loadSprite("firstsign", "sprites/misc/FirstSign.png");

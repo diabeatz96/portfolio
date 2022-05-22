@@ -2726,6 +2726,15 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       z(0),
       fixed()
     ]);
+    const bglogo = add(["bglogo", fixed(), rect(65, 260), pos(20, 130), opacity(0.5), outline(4, WHITE)]);
+    const github = add(["github", fixed(), sprite("github"), pos(25, 155), scale(0.1), area()]);
+    const linkedin = add(["linkedin", fixed(), sprite("linkedin"), pos(20, 200), scale(0.1), area()]);
+    const twitter = add(["twitter", fixed(), sprite("twitter"), pos(27, 260), scale(0.022), area()]);
+    const resume = add(["resume", fixed(), sprite("resume"), pos(25, 315), scale(0.1), area()]);
+    const t = (n = 1) => time() * n;
+    const w = (a2, b2, n) => wave(a2, b2, t(n));
+    const px = 160;
+    const py = 200;
     const player2 = get("player")[0];
     left.onUpdate(() => {
       left.frame = 0;
@@ -2845,11 +2854,11 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     const portal = get("portal")[0];
     const portal2 = get("portal2")[0];
     onCollide("player", "portal", () => {
-      let time = 1;
+      let time2 = 1;
       loop(1, () => {
         destroyAll("E Text");
         const word = add([
-          text(`Transporting..${time++}`, { size: 20 }),
+          text(`Transporting..${time2++}`, { size: 20 }),
           pos(person.pos.x, person.pos.y - 40),
           width(24),
           height(24),
@@ -2862,11 +2871,11 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       });
     });
     onCollide("player", "portal2", () => {
-      let time = 1;
+      let time2 = 1;
       loop(1, () => {
         destroyAll("E Text");
         const word = add([
-          text(`Transporting..${time++}`, { size: 20 }),
+          text(`Transporting..${time2++}`, { size: 20 }),
           pos(person.pos.x, person.pos.y - 40),
           width(24),
           height(24),
@@ -2878,11 +2887,11 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       });
     });
     onCollide("player", "portal3", () => {
-      let time = 1;
+      let time2 = 1;
       loop(1, () => {
         destroyAll("E Text");
         const word = add([
-          text(`Transporting..${time++}`, { size: 20 }),
+          text(`Transporting..${time2++}`, { size: 20 }),
           pos(person.pos.x, person.pos.y - 40),
           width(24),
           height(24),
@@ -3335,6 +3344,10 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   loadAseprite("DKey", "sprites/misc/D.png", "sprites/misc/D.json");
   loadAseprite("LeftKey", "sprites/misc/ALeft.png", "sprites/misc/ARROWLEFT.json");
   loadAseprite("RightKey", "sprites/misc/ARight.png", "sprites/misc/ARROWRIGHT.json");
+  loadSprite("github", "sprites/misc/github.png");
+  loadSprite("resume", "sprites/misc/resume.png");
+  loadSprite("linkedin", "sprites/misc/linkedin.png");
+  loadSprite("twitter", "sprites/misc/twitter.png");
   loadSprite("me", "sprites/aboutme/me.jpg");
   loadSprite("projectzeus", "sprites/misc/projectzeus.png");
   loadSprite("firstsign", "sprites/misc/FirstSign.png");

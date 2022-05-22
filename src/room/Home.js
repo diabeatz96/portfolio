@@ -149,7 +149,10 @@ function Home() {
     EventManager();
     cat();
 
+
+
 }
+
 
 
 export default Home;
