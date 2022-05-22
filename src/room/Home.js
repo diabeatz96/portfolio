@@ -40,8 +40,8 @@ function Home() {
     add([
         pos(425, 50),
         text("Home", {
-            size: 48, // 48 pixels tall
-            width: 320, // it'll wrap to next line when width exceeds this value
+            size: 48,
+            width: 320,
             font: "sinko", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
         }),
     ])
@@ -49,8 +49,8 @@ function Home() {
     add([
         pos(300, 100),
         text("Welcome to my website! My name's Adam and I am a Web and Game Developer.", {
-            size: 24, // 48 pixels tall
-            width: 500, // it'll wrap to next line when width exceeds this value
+            size: 24,
+            width: 500,
             font: "sinko", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
         }),
     ])

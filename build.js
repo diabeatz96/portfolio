@@ -3202,11 +3202,19 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       go("Home");
     });
     add([
-      pos(425, 50),
-      text("AboutMe", {
+      pos(300, -40),
+      text("About Me", {
         size: 32,
         width: 320,
-        font: "sinko"
+        font: "apl386o"
+      })
+    ]);
+    add([
+      pos(100, 0),
+      text("I am a software engineer located in NYC, I am currently transitioning from the film industry into web and game development. I am fluent in Javascript, React, C++, Unreal Engine and much more.", {
+        size: 20,
+        width: 700,
+        font: "apl386"
       })
     ]);
     addLevel([
@@ -3215,7 +3223,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       "                           ",
       "                           ",
       "                           ",
-      "                           ",
+      "                   X       ",
       "                           ",
       "                           ",
       "                           ",
@@ -3278,6 +3286,12 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         area({ scale: 0.3 }),
         origin("center"),
         "portal"
+      ],
+      "X": () => [
+        sprite("me"),
+        origin("center"),
+        scale(0.1),
+        "picture"
       ]
     });
     player_default();
@@ -3321,7 +3335,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   loadAseprite("DKey", "sprites/misc/D.png", "sprites/misc/D.json");
   loadAseprite("LeftKey", "sprites/misc/ALeft.png", "sprites/misc/ARROWLEFT.json");
   loadAseprite("RightKey", "sprites/misc/ARight.png", "sprites/misc/ARROWRIGHT.json");
-  loadSprite("bean", "sprites/bean.png");
+  loadSprite("me", "sprites/aboutme/me.jpg");
   loadSprite("projectzeus", "sprites/misc/projectzeus.png");
   loadSprite("firstsign", "sprites/misc/FirstSign.png");
   loadSprite("guessgame", "sprites/misc/guessgame.png");

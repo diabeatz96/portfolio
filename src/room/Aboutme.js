@@ -10,14 +10,22 @@ function AboutMe() {
     })
 
     add([
-        pos(425, 50),
-        text("AboutMe", {
+        pos(300, -40),
+        text("About Me", {
             size: 32, // 48 pixels tall
             width: 320, // it'll wrap to next line when width exceeds this value
-            font: "sinko", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
+            font: "apl386o", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
         }),
     ])
 
+    add([
+        pos(100, 0),
+        text("I am a software engineer located in NYC, I am currently transitioning from the film industry into web and game development. I am fluent in Javascript, React, C++, Unreal Engine and much more.", {
+            size: 20, // 48 pixels tall
+            width: 700, // it'll wrap to next line when width exceeds this value
+            font: "apl386", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
+        }),
+    ])
 
 
     addLevel([
@@ -26,7 +34,7 @@ function AboutMe() {
         "                           ",
         "                           ",
         "                           ",
-        "                           ",
+        "                   X       ",
         "                           ",
         "                           ",
         "                           ",
@@ -92,6 +100,12 @@ function AboutMe() {
             origin("center"),
             "portal"
         ],
+        "X": () => [
+            sprite("me"),
+            origin("center"),
+            scale(0.1),
+            "picture"
+        ]
     })
 
     player();

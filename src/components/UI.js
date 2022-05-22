@@ -33,6 +33,8 @@ function UI() {
         fixed()
     ])
 
+
+
     const player = (get("player"))[0];
 
 

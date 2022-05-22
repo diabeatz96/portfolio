@@ -30,7 +30,8 @@ loadAseprite("DKey", "sprites/misc/D.png", "sprites/misc/D.json")
 loadAseprite("LeftKey", "sprites/misc/ALeft.png", "sprites/misc/ARROWLEFT.json")
 loadAseprite("RightKey", "sprites/misc/ARight.png", "sprites/misc/ARROWRIGHT.json")
 
-loadSprite("bean", "sprites/bean.png");
+
+loadSprite("me", "sprites/aboutme/me.jpg");
 loadSprite("projectzeus", "sprites/misc/projectzeus.png")
 loadSprite("firstsign", "sprites/misc/FirstSign.png");
 loadSprite("guessgame", "sprites/misc/guessgame.png");
