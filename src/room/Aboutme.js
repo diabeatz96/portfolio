@@ -109,8 +109,8 @@ function AboutMe() {
         ]
     })
 
-    UI();
     player();
+    UI();
     background("background2", 1.7, "center");
     EventManager();
 }

@@ -73,6 +73,7 @@ function UI() {
     const py = 200
 
 
+
     onDraw(() => {
 
 
@@ -157,12 +158,12 @@ function UI() {
 
     left.onUpdate(() => {
         left.frame = 0;
-
+        cursor("default");
     })
 
     right.onUpdate(() => {
         right.frame = 0;
-
+        cursor("default");
     })
 
     onHover("left", (() => {
@@ -187,8 +188,6 @@ function UI() {
             }
         }
     }))
-
-
 }
 
 export default UI;

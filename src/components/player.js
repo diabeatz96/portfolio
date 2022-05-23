@@ -38,7 +38,6 @@ function player() {
 
     player.onUpdate(() => {
         camPos(player.pos);
-        cursor("default");
     })
 
     /**

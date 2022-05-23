@@ -146,8 +146,8 @@ function Home() {
     })
 
     background("background", 1, "center");
-    UI();
     player();
+    UI();
     EventManager();
     cat();
 

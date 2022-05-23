@@ -2796,9 +2796,11 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     const player2 = get("player")[0];
     left.onUpdate(() => {
       left.frame = 0;
+      cursor("default");
     });
     right.onUpdate(() => {
       right.frame = 0;
+      cursor("default");
     });
     onHover("left", () => {
       if (mouseIsDown()) {
@@ -2849,7 +2851,6 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     });
     player2.onUpdate(() => {
       camPos(player2.pos);
-      cursor("default");
     });
     player2.onGround(() => {
       if (!isKeyDown("a") && !isKeyDown("d")) {
@@ -3120,8 +3121,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       })
     ]);
     picture_default("projectzeus", 0.2, vec2(2e3, -20));
-    UI_default();
     player_default();
+    UI_default();
     background_default("background1", 3, "center");
     EventManager_default();
   }
@@ -3256,8 +3257,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       ]
     });
     background_default("background", 1, "center");
-    UI_default();
     player_default();
+    UI_default();
     EventManager_default();
     cat_default();
   }
@@ -3362,8 +3363,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         "picture"
       ]
     });
-    UI_default();
     player_default();
+    UI_default();
     background_default("background2", 1.7, "center");
     EventManager_default();
   }

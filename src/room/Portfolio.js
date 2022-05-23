@@ -180,8 +180,8 @@ function Portfolio() {
     picture("projectzeus", 0.20, vec2(2000, -20))
 
 
-    UI();
     player();
+    UI();
     background("background1", 3, "center");
     EventManager();
 
