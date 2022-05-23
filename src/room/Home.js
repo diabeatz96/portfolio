@@ -3,6 +3,7 @@ import teleporter from "../components/teleporter";
 import background from "../components/background";
 import EventManager from "../EventManager";
 import cat from "../components/cat";
+import UI from "../components/UI";
 
 function Home() {
 
@@ -144,11 +145,11 @@ function Home() {
         ],
     })
 
-    player();
     background("background", 1, "center");
+    UI();
+    player();
     EventManager();
     cat();
-
 
 
 }

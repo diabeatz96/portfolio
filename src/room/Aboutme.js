@@ -1,6 +1,7 @@
 import player from "../components/player";
 import background from "../components/background";
 import EventManager from "../EventManager";
+import UI from "../components/UI";
 
 function AboutMe() {
     console.log('Portfolio dog')
@@ -108,6 +109,7 @@ function AboutMe() {
         ]
     })
 
+    UI();
     player();
     background("background2", 1.7, "center");
     EventManager();

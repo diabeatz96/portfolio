@@ -99,7 +99,6 @@ function player() {
         }
     })
 
-    UI();
 }
 
 export default player;

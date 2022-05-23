@@ -2,6 +2,7 @@ import player from "../components/player";
 import background from "../components/background";
 import EventManager from "../EventManager";
 import picture from "../components/picture";
+import UI from "../components/UI";
 
 function Portfolio() {
     console.log('Portfolio dog')
@@ -179,7 +180,7 @@ function Portfolio() {
     picture("projectzeus", 0.20, vec2(2000, -20))
 
 
-
+    UI();
     player();
     background("background1", 3, "center");
     EventManager();

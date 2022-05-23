@@ -2727,14 +2727,72 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       fixed()
     ]);
     const bglogo = add(["bglogo", fixed(), rect(65, 260), pos(20, 130), opacity(0.5), outline(4, WHITE)]);
-    const github = add(["github", fixed(), sprite("github"), pos(25, 155), scale(0.1), area()]);
-    const linkedin = add(["linkedin", fixed(), sprite("linkedin"), pos(20, 200), scale(0.1), area()]);
+    const github = add([fixed(), sprite("github"), pos(25, 155), scale(0.1), area(), "git"]);
+    const linkedin = add(["linkedin", fixed(), sprite("linkedin"), pos(20, 203), scale(0.1), area()]);
     const twitter = add(["twitter", fixed(), sprite("twitter"), pos(27, 260), scale(0.022), area()]);
     const resume = add(["resume", fixed(), sprite("resume"), pos(25, 315), scale(0.1), area()]);
     const t = (n = 1) => time() * n;
     const w = (a2, b2, n) => wave(a2, b2, t(n));
     const px = 160;
     const py = 200;
+    onDraw(() => {
+      drawSprite({
+        sprite: "github",
+        pos: vec2(52, 180),
+        origin: "center",
+        scale: w(0.11, 0.12, 4),
+        fixed: true
+      });
+      drawSprite({
+        sprite: "linkedin",
+        pos: vec2(52, 235),
+        origin: "center",
+        scale: w(0.1, 0.11, 4),
+        fixed: true
+      });
+      drawSprite({
+        sprite: "twitter",
+        pos: vec2(52, 285),
+        origin: "center",
+        scale: w(0.022, 0.023, 4),
+        fixed: true
+      });
+      drawSprite({
+        sprite: "resume",
+        pos: vec2(52, 342),
+        origin: "center",
+        scale: w(0.1, 0.11, 4),
+        fixed: true
+      });
+    });
+    onHover(`git`, () => {
+      cursor("pointer");
+    });
+    onHover(`linkedin`, () => {
+      cursor("pointer");
+    });
+    onHover(`twitter`, () => {
+      cursor("pointer");
+    });
+    onHover(`resume`, () => {
+      cursor("pointer");
+    });
+    onClick("git", () => {
+      console.log("Activated GIT");
+      window.open("https://github.com/diabeatz96");
+    });
+    onClick("linkedin", () => {
+      console.log("Activated linkedin");
+      window.open("https://www.linkedin.com/in/adamkostandy/");
+    });
+    onClick("twitter", () => {
+      console.log("Activated twitter");
+      window.open("https://twitter.com/bigblobgame");
+    });
+    onClick("resume", () => {
+      console.log("Activated resume");
+      window.open("https://drive.google.com/uc?export=download&id=12KZzTp7-tsagmgk3s_OgIsBS_pbO1aXQ");
+    });
     const player2 = get("player")[0];
     left.onUpdate(() => {
       left.frame = 0;
@@ -2830,7 +2888,6 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         player2.play("Idle");
       }
     });
-    UI_default();
   }
   var player_default = player;
 
@@ -3063,6 +3120,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       })
     ]);
     picture_default("projectzeus", 0.2, vec2(2e3, -20));
+    UI_default();
     player_default();
     background_default("background1", 3, "center");
     EventManager_default();
@@ -3197,8 +3255,9 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         "portal2"
       ]
     });
-    player_default();
     background_default("background", 1, "center");
+    UI_default();
+    player_default();
     EventManager_default();
     cat_default();
   }
@@ -3303,6 +3362,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         "picture"
       ]
     });
+    UI_default();
     player_default();
     background_default("background2", 1.7, "center");
     EventManager_default();
