@@ -72,7 +72,12 @@ function UI() {
     const px = 160
     const py = 200
 
+    const music = play("theme", {
+        volume: 0.8,
+        loop: true
+    })
 
+    music.pause();
 
     onDraw(() => {
 

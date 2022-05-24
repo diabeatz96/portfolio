@@ -24,6 +24,13 @@ kaboom({
 
 gravity(640);
 
+
+/*
+        Sound Assests Mp3
+ */
+
+loadSound("theme", "sprites/music/sound.mp3")
+loadSound("walk", "sprites/music/walk.wav")
 // Button Assests
 loadAseprite("AKey", "sprites/misc/A.png", "sprites/misc/A.json")
 loadAseprite("DKey", "sprites/misc/D.png", "sprites/misc/D.json")

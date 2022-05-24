@@ -122,7 +122,7 @@ function Portfolio() {
     ])
 
 
-    picture("firstsign", 0.1, vec2(900, -20));
+    picture("firstsign", 0.1, vec2(900, -20), "https://thefirstsign.netlify.app/");
 
     /*
 
@@ -151,7 +151,7 @@ function Portfolio() {
     ])
 
 
-    picture("guessgame", 0.23, vec2(1400, -20));
+    picture("guessgame", 0.23, vec2(1400, -20), "https://diabeatz96.github.io/guessgame/");
 
     /*
         Project 3.
@@ -177,7 +177,7 @@ function Portfolio() {
         }),
     ])
 
-    picture("projectzeus", 0.20, vec2(2000, -20))
+    picture("projectzeus", 0.20, vec2(2000, -20), "https://github.com/OPslimes")
 
 
     player();

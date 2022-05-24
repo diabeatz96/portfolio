@@ -2735,6 +2735,11 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     const w = (a2, b2, n) => wave(a2, b2, t(n));
     const px = 160;
     const py = 200;
+    const music = play("theme", {
+      volume: 0.8,
+      loop: true
+    });
+    music.pause();
     onDraw(() => {
       drawSprite({
         sprite: "github",
@@ -2838,6 +2843,9 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       body(),
       "player"
     ]);
+    const walk = play("walk", {
+      volume: 0.1
+    });
     camScale(0.7);
     onKeyRelease("tab", () => {
       console.log("Hi!");
@@ -2964,7 +2972,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   var EventManager_default = EventManager;
 
   // src/components/picture.js
-  function picture(image, size, position) {
+  function picture(image, size, position, link) {
     add([
       sprite(`${image}`),
       scale(size),
@@ -2974,7 +2982,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       `${image}1`
     ]);
     onClick(`${image}1`, () => {
-      window.open("https://google.com");
+      window.open(`${link}`);
     });
     const pic = get(`${image}1`)[0];
     pic.onUpdate(() => {
@@ -3086,7 +3094,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         font: "sinko"
       })
     ]);
-    picture_default("firstsign", 0.1, vec2(900, -20));
+    picture_default("firstsign", 0.1, vec2(900, -20), "https://thefirstsign.netlify.app/");
     add([
       pos(1400, -45),
       text("Guessing Game", {
@@ -3103,7 +3111,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         font: "sinko"
       })
     ]);
-    picture_default("guessgame", 0.23, vec2(1400, -20));
+    picture_default("guessgame", 0.23, vec2(1400, -20), "https://diabeatz96.github.io/guessgame/");
     add([
       pos(2e3, -45),
       text("Project Zeus", {
@@ -3120,7 +3128,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         font: "sinko"
       })
     ]);
-    picture_default("projectzeus", 0.2, vec2(2e3, -20));
+    picture_default("projectzeus", 0.2, vec2(2e3, -20), "https://github.com/OPslimes");
     player_default();
     UI_default();
     background_default("background1", 3, "center");
@@ -3279,10 +3287,10 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       })
     ]);
     add([
-      pos(100, 0),
-      text("I am a software engineer located in NYC, I am currently transitioning from the film industry into web and game development. I am fluent in Javascript, React, C++, Unreal Engine and much more.", {
+      pos(150, 50),
+      text("I am a junior software engineer located in NYC, I am currently transitioning from the film industry into web and game development. I am fluent in Javascript, React, C++, Unreal Engine and much more.", {
         size: 20,
-        width: 700,
+        width: 450,
         font: "apl386"
       })
     ]);
@@ -3291,8 +3299,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       "                           ",
       "                           ",
       "                           ",
+      "                      X    ",
       "                           ",
-      "                   X       ",
       "                           ",
       "                           ",
       "                           ",
@@ -3359,7 +3367,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       "X": () => [
         sprite("me"),
         origin("center"),
-        scale(0.1),
+        scale(0.13),
         "picture"
       ]
     });
@@ -3401,6 +3409,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     stretch: true
   });
   gravity(640);
+  loadSound("theme", "sprites/music/sound.mp3");
+  loadSound("walk", "sprites/music/walk.wav");
   loadAseprite("AKey", "sprites/misc/A.png", "sprites/misc/A.json");
   loadAseprite("DKey", "sprites/misc/D.png", "sprites/misc/D.json");
   loadAseprite("LeftKey", "sprites/misc/ALeft.png", "sprites/misc/ARROWLEFT.json");

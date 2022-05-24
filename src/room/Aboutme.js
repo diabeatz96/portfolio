@@ -20,10 +20,10 @@ function AboutMe() {
     ])
 
     add([
-        pos(100, 0),
-        text("I am a software engineer located in NYC, I am currently transitioning from the film industry into web and game development. I am fluent in Javascript, React, C++, Unreal Engine and much more.", {
+        pos(150, 50),
+        text("I am a junior software engineer located in NYC, I am currently transitioning from the film industry into web and game development. I am fluent in Javascript, React, C++, Unreal Engine and much more.", {
             size: 20, // 48 pixels tall
-            width: 700, // it'll wrap to next line when width exceeds this value
+            width: 450, // it'll wrap to next line when width exceeds this value
             font: "apl386", // there're 4 built-in fonts: "apl386", "apl386o", "sink", and "sinko"
         }),
     ])
@@ -34,8 +34,8 @@ function AboutMe() {
         "                           ",
         "                           ",
         "                           ",
+        "                      X    ",
         "                           ",
-        "                   X       ",
         "                           ",
         "                           ",
         "                           ",
@@ -104,7 +104,7 @@ function AboutMe() {
         "X": () => [
             sprite("me"),
             origin("center"),
-            scale(0.1),
+            scale(0.13),
             "picture"
         ]
     })

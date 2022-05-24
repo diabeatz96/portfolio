@@ -16,6 +16,11 @@ function player() {
         "player"
     ])
 
+    const walk = play("walk", {
+        volume: 0.1,
+    })
+
+
 
 
     /**

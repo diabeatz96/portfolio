@@ -1,4 +1,4 @@
-function picture(image, size, position) {
+function picture(image, size, position, link) {
    add([
         sprite(`${image}`),
         scale(size),
@@ -9,7 +9,7 @@ function picture(image, size, position) {
     ])
 
     onClick(`${image}1`, () => {
-        window.open("https://google.com")
+        window.open(`${link}`)
     })
 
 
