@@ -176,8 +176,8 @@ function UI() {
             player.move(-clickSpeed, 0)
             player.flipX(true)
             left.frame = 1;
-            if (player.isGrounded() && player.curAnim() !== "Run") {
-                player.play("Run")
+            if (player.isGrounded() && player.curAnim() !== "AdamWalk") {
+                player.play("AdamWalk")
             }
         }
     }))
@@ -188,8 +188,8 @@ function UI() {
             player.move(clickSpeed, 0)
             player.flipX(false)
             right.frame = 1;
-            if (player.isGrounded() && player.curAnim() !== "Run") {
-                player.play("Run")
+            if (player.isGrounded() && player.curAnim() !== "AdamWalk") {
+                player.play("AdamWalk")
             }
         }
     }))

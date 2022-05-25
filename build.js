@@ -2812,8 +2812,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         player2.move(-clickSpeed, 0);
         player2.flipX(true);
         left.frame = 1;
-        if (player2.isGrounded() && player2.curAnim() !== "Run") {
-          player2.play("Run");
+        if (player2.isGrounded() && player2.curAnim() !== "AdamWalk") {
+          player2.play("AdamWalk");
         }
       }
     });
@@ -2822,8 +2822,8 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         player2.move(clickSpeed, 0);
         player2.flipX(false);
         right.frame = 1;
-        if (player2.isGrounded() && player2.curAnim() !== "Run") {
-          player2.play("Run");
+        if (player2.isGrounded() && player2.curAnim() !== "AdamWalk") {
+          player2.play("AdamWalk");
         }
       }
     });
@@ -2843,9 +2843,6 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       body(),
       "player"
     ]);
-    const walk = play("walk", {
-      volume: 0.1
-    });
     camScale(0.7);
     onKeyRelease("tab", () => {
       console.log("Hi!");
@@ -2862,28 +2859,28 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     });
     player2.onGround(() => {
       if (!isKeyDown("a") && !isKeyDown("d")) {
-        player2.play("Idle");
+        player2.play("AdamIdle");
       } else {
-        player2.play("Run");
+        player2.play("AdamWalk");
       }
     });
     onKeyDown(["a", "left"], () => {
       player2.move(-SPEED, 0);
       player2.flipX(true);
-      if (player2.isGrounded() && player2.curAnim() !== "Run") {
-        player2.play("Run");
+      if (player2.isGrounded() && player2.curAnim() !== "AdamWalk") {
+        player2.play("AdamWalk");
       }
     });
     onKeyDown(["d", "right"], () => {
       player2.move(SPEED, 0);
       player2.flipX(false);
-      if (player2.isGrounded() && player2.curAnim() !== "Run") {
-        player2.play("Run");
+      if (player2.isGrounded() && player2.curAnim() !== "AdamWalk") {
+        player2.play("AdamWalk");
       }
     });
     onKeyRelease(["a", "d", "left", "right"], () => {
       if (player2.isGrounded() && (!isKeyDown("a") && !isKeyDown("d")) || !isKeyDown("left") && !isKeyDown("right")) {
-        player2.play("Idle");
+        player2.play("AdamIdle");
       }
     });
     onKeyPress("space", () => {
@@ -2894,7 +2891,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     });
     onMouseRelease(() => {
       if (player2.isGrounded()) {
-        player2.play("Idle");
+        player2.play("AdamIdle");
       }
     });
   }
@@ -3194,9 +3191,9 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       })
     ]);
     addLevel([
+      " 1                         ",
       "                           ",
-      "                           ",
-      "                           ",
+      "   O                       ",
       "  {===}                    ",
       "                           ",
       "                           ",
@@ -3262,6 +3259,18 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         area({ scale: 0.3 }),
         origin("center"),
         "portal2"
+      ],
+      "O": () => [
+        sprite("player", { anim: "Amya" }),
+        scale(2),
+        origin("center"),
+        body(),
+        area()
+      ],
+      "1": () => [
+        sprite("amyabubble"),
+        scale(0.3),
+        origin("center")
       ]
     });
     background_default("background", 1, "center");
@@ -3279,7 +3288,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       go("Home");
     });
     add([
-      pos(300, -40),
+      pos(550, -40),
       text("About Me", {
         size: 32,
         width: 320,
@@ -3287,7 +3296,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       })
     ]);
     add([
-      pos(150, 50),
+      pos(450, 50),
       text("I am a junior software engineer located in NYC, I am currently transitioning from the film industry into web and game development. I am fluent in Javascript, React, C++, Unreal Engine and much more.", {
         size: 20,
         width: 450,
@@ -3295,25 +3304,25 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       })
     ]);
     addLevel([
-      "                           ",
-      "                           ",
-      "                           ",
-      "                           ",
-      "                      X    ",
-      "                           ",
-      "                           ",
-      "                           ",
-      "                           ",
-      " @                        #",
-      "{=========================}",
-      "---------------------------",
-      "---------------------------",
-      "---------------------------",
-      "---------------------------",
-      "---------------------------",
-      "---------------------------",
-      "---------------------------",
-      "---------------------------"
+      "                                     ",
+      "                                     ",
+      "                                     ",
+      "                                     ",
+      "                              X      ",
+      "                                     ",
+      "                                      ",
+      "                                      ",
+      "                                      ",
+      "            @                    Q   #",
+      "           {=========================}",
+      "           ---------------------------",
+      "   O  P    ---------------------------",
+      "  {===}    ---------------------------",
+      "           ---------------------------",
+      "           ---------------------------",
+      "           ---------------------------",
+      "           ---------------------------",
+      "           ---------------------------"
     ], {
       width: 32,
       height: 32,
@@ -3369,6 +3378,27 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         origin("center"),
         scale(0.13),
         "picture"
+      ],
+      "O": () => [
+        sprite("player", { anim: "Ben" }),
+        scale(2),
+        origin("center"),
+        body(),
+        area()
+      ],
+      "P": () => [
+        sprite("player", { anim: "Jerine", flipX: true }),
+        scale(2),
+        origin("center"),
+        body(),
+        area()
+      ],
+      "Q": () => [
+        sprite("player", { anim: "Saneesh", flipX: true }),
+        scale(2),
+        pos(10, -10),
+        origin("center"),
+        area({ scale: 0.7 })
       ]
     });
     player_default();
@@ -3423,11 +3453,12 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   loadSprite("projectzeus", "sprites/misc/projectzeus.png");
   loadSprite("firstsign", "sprites/misc/FirstSign.png");
   loadSprite("guessgame", "sprites/misc/guessgame.png");
-  loadAseprite("player", "sprites/player/Warrior-sheet.png", "sprites/player/Warrior.json");
+  loadAseprite("player", "sprites/player/characters.png", "sprites/player/characters.json");
   loadSprite("teleporter", "sprites/objects/teleporter.png");
   loadSprite("background", "sprites/background/temp.png");
   loadSprite("background1", "sprites/background/Background2.png");
   loadSprite("background2", "sprites/background/Background.png");
+  loadSprite("amyabubble", "sprites/misc/AmyaBubble.png");
   loadAseprite("tile", "sprites/objects/DarkForestTile.png", "sprites/objects/DarkForestTile.Json");
   loadAseprite("cat", "sprites/objects/Cat.png", "sprites/objects/Cat.Json");
   loadAseprite("portal", "sprites/objects/Portal.png", "sprites/objects/Portal.Json");

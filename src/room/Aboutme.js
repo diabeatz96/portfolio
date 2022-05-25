@@ -11,7 +11,7 @@ function AboutMe() {
     })
 
     add([
-        pos(300, -40),
+        pos(550, -40),
         text("About Me", {
             size: 32, // 48 pixels tall
             width: 320, // it'll wrap to next line when width exceeds this value
@@ -20,7 +20,7 @@ function AboutMe() {
     ])
 
     add([
-        pos(150, 50),
+        pos(450, 50),
         text("I am a junior software engineer located in NYC, I am currently transitioning from the film industry into web and game development. I am fluent in Javascript, React, C++, Unreal Engine and much more.", {
             size: 20, // 48 pixels tall
             width: 450, // it'll wrap to next line when width exceeds this value
@@ -30,25 +30,25 @@ function AboutMe() {
 
 
     addLevel([
-        "                           ",
-        "                           ",
-        "                           ",
-        "                           ",
-        "                      X    ",
-        "                           ",
-        "                           ",
-        "                           ",
-        "                           ",
-        " @                        #",
-        "{=========================}",
-        "---------------------------",
-        "---------------------------",
-        "---------------------------",
-        "---------------------------",
-        "---------------------------",
-        "---------------------------",
-        "---------------------------",
-        "---------------------------",
+        "                                     ",
+        "                                     ",
+        "                                     ",
+        "                                     ",
+        "                              X      ",
+        "                                     ",
+        "                                      ",
+        "                                      ",
+        "                                      ",
+        "            @                    Q   #",
+        "           {=========================}",
+        "           ---------------------------",
+        "   O  P    ---------------------------",
+        "  {===}    ---------------------------",
+        "           ---------------------------",
+        "           ---------------------------",
+        "           ---------------------------",
+        "           ---------------------------",
+        "           ---------------------------",
     ], {
         // define the size of each block
         width: 32,
@@ -106,6 +106,27 @@ function AboutMe() {
             origin("center"),
             scale(0.13),
             "picture"
+        ],
+        "O": () => [
+            sprite("player", {anim: "Ben"}),
+            scale(2),
+            origin("center"),
+            body(),
+            area()
+        ],
+        "P": () => [
+            sprite("player", {anim: "Jerine", flipX: true}),
+            scale(2),
+            origin("center"),
+            body(),
+            area(),
+        ],
+        "Q": () => [
+            sprite("player", {anim: "Saneesh", flipX: true}),
+            scale(2),
+            pos(10, -10),
+            origin("center"),
+            area({scale: 0.7}),
         ]
     })
 

@@ -16,9 +16,11 @@ function player() {
         "player"
     ])
 
+    /*
     const walk = play("walk", {
         volume: 0.1,
     })
+     */
 
 
 
@@ -51,9 +53,9 @@ function player() {
 
     player.onGround(() => {
         if (!isKeyDown("a") && !isKeyDown("d")) {
-            player.play("Idle")
+            player.play("AdamIdle")
         } else {
-            player.play("Run")
+            player.play("AdamWalk")
         }
     })
 
@@ -64,23 +66,23 @@ function player() {
     onKeyDown(["a", "left"], () => {
         player.move(-SPEED, 0)
         player.flipX(true)
-        if (player.isGrounded() && player.curAnim() !== "Run") {
-            player.play("Run")
+        if (player.isGrounded() && player.curAnim() !== "AdamWalk") {
+            player.play("AdamWalk")
         }
     })
 
     onKeyDown(["d", "right"], () => {
         player.move(SPEED, 0)
         player.flipX(false)
-        if (player.isGrounded() && player.curAnim() !== "Run") {
-            player.play("Run")
+        if (player.isGrounded() && player.curAnim() !== "AdamWalk") {
+            player.play("AdamWalk")
         }
     })
 
     onKeyRelease(["a", "d", "left", "right"], () => {
         // Only reset to "idle" if player is not holding any of these keys
         if (player.isGrounded() && (!isKeyDown("a") && !isKeyDown("d")) || (!isKeyDown("left") && !isKeyDown("right"))) {
-            player.play("Idle")
+            player.play("AdamIdle")
         }
     })
 
@@ -97,12 +99,17 @@ function player() {
      */
 
 
+
     onMouseRelease(() => {
         if (player.isGrounded()) {
-            player.play("Idle")
+            player.play("AdamIdle")
         }
     })
 
+
+    /**
+     * Sound Logic - Working on sound for character
+     */
 }
 
 export default player;

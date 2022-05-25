@@ -38,26 +38,39 @@ loadAseprite("LeftKey", "sprites/misc/ALeft.png", "sprites/misc/ARROWLEFT.json")
 loadAseprite("RightKey", "sprites/misc/ARight.png", "sprites/misc/ARROWRIGHT.json")
 
 
+
+/*
+     Resume Button Links
+ */
+
 loadSprite("github", "sprites/misc/github.png")
 loadSprite("resume", "sprites/misc/resume.png")
 loadSprite("linkedin", "sprites/misc/linkedin.png")
 loadSprite("twitter", "sprites/misc/twitter.png")
 
 
+/*
+    Game Assests
+ */
+
 loadSprite("me", "sprites/aboutme/me.jpg");
 loadSprite("projectzeus", "sprites/misc/projectzeus.png")
 loadSprite("firstsign", "sprites/misc/FirstSign.png");
 loadSprite("guessgame", "sprites/misc/guessgame.png");
-loadAseprite("player", "sprites/player/Warrior-sheet.png", "sprites/player/Warrior.json");
+loadAseprite("player", "sprites/player/characters.png", "sprites/player/characters.json");
 loadSprite("teleporter", "sprites/objects/teleporter.png");
 loadSprite("background", "sprites/background/temp.png");
 loadSprite("background1", "sprites/background/Background2.png");
 loadSprite("background2", "sprites/background/Background.png");
+loadSprite("amyabubble", "sprites/misc/AmyaBubble.png")
 loadAseprite("tile", "sprites/objects/DarkForestTile.png", "sprites/objects/DarkForestTile.Json");
 loadAseprite("cat", "sprites/objects/Cat.png", "sprites/objects/Cat.Json");
 loadAseprite("portal", "sprites/objects/Portal.png", "sprites/objects/Portal.Json");
 
 
+/*
+    Scenes
+ */
 scene("Home", Home)
 scene("Portfolio", Portfolio)
 scene("AboutMe", AboutMe)

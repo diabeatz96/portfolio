@@ -72,9 +72,9 @@ function Home() {
 
 
     addLevel([
+        " 1                         ",
         "                           ",
-        "                           ",
-        "                           ",
+        "   O                       ",
         "  {===}                    ",
         "                           ",
         "                           ",
@@ -142,6 +142,18 @@ function Home() {
             area({scale: 0.3}),
             origin("center"),
             "portal2"
+        ],
+        "O": () => [
+            sprite("player", {anim: "Amya"}),
+            scale(2),
+            origin("center"),
+            body(),
+            area()
+        ],
+        "1": () => [
+            sprite("amyabubble"),
+            scale(0.3),
+            origin("center")
         ],
     })
 
