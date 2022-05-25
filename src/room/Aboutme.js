@@ -35,14 +35,14 @@ function AboutMe() {
         "                                     ",
         "                                     ",
         "                              X      ",
-        "                                     ",
-        "                                      ",
-        "                                      ",
-        "                                      ",
-        "            @                    Q   #",
-        "           {=========================}",
+        "                                            3           ",
+        "                                                        ",
+        "                                              Q     B     ",
+        "                                              {=====}     ",
+        "           2@           F            #",
+        " 1         {==========================}",
         "           ---------------------------",
-        "   O  P    ---------------------------",
+        "   O TP    ---------------------------",
         "  {===}    ---------------------------",
         "           ---------------------------",
         "           ---------------------------",
@@ -127,7 +127,41 @@ function AboutMe() {
             pos(10, -10),
             origin("center"),
             area({scale: 0.7}),
-        ]
+        ],
+        "1": () => [
+            sprite("saneeshbubble"),
+            scale(0.3),
+            origin("center")
+        ],
+        "2": () => [
+            sprite("jerinebubble"),
+            scale(0.3),
+            origin("right")
+        ],
+        "3": () => [
+            sprite("benbubble"),
+            scale(0.3),
+            origin("center")
+        ],
+        "T": () => [
+            sprite("tree2"),
+            scale(0.8),
+            origin("bot"),
+            z(-1),
+            pos(-20, 60)
+        ],
+        "B": () => [
+            sprite("tree5"),
+            scale(0.8),
+            origin("bot"),
+            z(-1),
+            pos(-20, 50)
+        ],
+        "F": () => [
+            sprite("fox", {anim: "Idle"}),
+            scale(2),
+            origin("center")
+        ],
     })
 
     player();

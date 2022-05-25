@@ -17,16 +17,16 @@ function Portfolio() {
         "                           ",
         "                           ",
         "                           ",
+        "                                                             C",
         "                           ",
         "                           ",
-        "                           ",
-        "                           ",
-        "                           ",
-        "         P                 ",
-        " @                                                  Q                             #",
+        "                                                                 ",
+        "         2                                                                      3 ",
+        "           P                                                                     ",
+        " #                   T                                       B                Q  @",
         "{================================================================================}",
         "                                                                                  ",
-        "                                                                                  ",
+        "                         1                                                         ",
         "                                                                                  ",
         "                       W                                                          ",
         "                     {===}                                                        ",
@@ -86,14 +86,14 @@ function Portfolio() {
             "portal3"
         ],
         "P": () => [
-            sprite("player", {anim: "Binu", flipX: true}),
+            sprite("player", {anim: "Binu"}),
             scale(2),
             origin("center"),
             pos(10, 26),
             area(),
         ],
         "Q": () => [
-            sprite("player", {anim: "Jaijo", flipX: true}),
+            sprite("player", {anim: "Jaijo"}),
             scale(2),
             pos(10, -7),
             origin("center"),
@@ -106,10 +106,44 @@ function Portfolio() {
             body(),
             area(),
         ],
+        "1": () => [
+            sprite("mikebubble"),
+            scale(0.3),
+            origin("center")
+        ],
+        "2": () => [
+            sprite("binububble"),
+            scale(0.3),
+            origin("center")
+        ],
+        "3": () => [
+            sprite("jaijobubble"),
+            scale(0.3),
+            origin("center")
+        ],
+        "T": () => [
+            sprite("tree4"),
+            scale(0.8),
+            origin("bot"),
+            z(-1),
+            pos(-20, 50)
+        ],
+        "B": () => [
+            sprite("tree1"),
+            scale(0.8),
+            origin("bot"),
+            z(-1),
+            pos(-20, 50)
+        ],
+        "C": () => [
+            sprite("crow", {anim: "Crow"}),
+            scale(2),
+            origin("center")
+        ],
     })
 
     add([
-        pos(425, 50),
+        pos(225, 50),
         text("Portfolio", {
             size: 32, // 48 pixels tall
             width: 320, // it'll wrap to next line when width exceeds this value
@@ -118,7 +152,7 @@ function Portfolio() {
     ])
 
     add([
-        pos(350, 100),
+        pos(150, 100),
         text("Walk to the right to explore my projects!", {
             size: 24, // 48 pixels tall
             width: 500, // it'll wrap to next line when width exceeds this value

@@ -3001,16 +3001,16 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       "                           ",
       "                           ",
       "                           ",
+      "                                                             C",
       "                           ",
       "                           ",
-      "                           ",
-      "                           ",
-      "                           ",
-      "         P                 ",
-      " @                                                  Q                             #",
+      "                                                                 ",
+      "         2                                                                      3 ",
+      "           P                                                                     ",
+      " #                   T                                       B                Q  @",
       "{================================================================================}",
       "                                                                                  ",
-      "                                                                                  ",
+      "                         1                                                         ",
       "                                                                                  ",
       "                       W                                                          ",
       "                     {===}                                                        ",
@@ -3065,14 +3065,14 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         "portal3"
       ],
       "P": () => [
-        sprite("player", { anim: "Binu", flipX: true }),
+        sprite("player", { anim: "Binu" }),
         scale(2),
         origin("center"),
         pos(10, 26),
         area()
       ],
       "Q": () => [
-        sprite("player", { anim: "Jaijo", flipX: true }),
+        sprite("player", { anim: "Jaijo" }),
         scale(2),
         pos(10, -7),
         origin("center"),
@@ -3084,10 +3084,44 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         origin("center"),
         body(),
         area()
+      ],
+      "1": () => [
+        sprite("mikebubble"),
+        scale(0.3),
+        origin("center")
+      ],
+      "2": () => [
+        sprite("binububble"),
+        scale(0.3),
+        origin("center")
+      ],
+      "3": () => [
+        sprite("jaijobubble"),
+        scale(0.3),
+        origin("center")
+      ],
+      "T": () => [
+        sprite("tree4"),
+        scale(0.8),
+        origin("bot"),
+        z(-1),
+        pos(-20, 50)
+      ],
+      "B": () => [
+        sprite("tree1"),
+        scale(0.8),
+        origin("bot"),
+        z(-1),
+        pos(-20, 50)
+      ],
+      "C": () => [
+        sprite("crow", { anim: "Crow" }),
+        scale(2),
+        origin("center")
       ]
     });
     add([
-      pos(425, 50),
+      pos(225, 50),
       text("Portfolio", {
         size: 32,
         width: 320,
@@ -3095,7 +3129,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       })
     ]);
     add([
-      pos(350, 100),
+      pos(150, 100),
       text("Walk to the right to explore my projects!", {
         size: 24,
         width: 500,
@@ -3227,7 +3261,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       "                           ",
       "                           ",
       "                           ",
-      " @                        #",
+      " @                     T   #",
       "{=========================}",
       "---------------------------",
       "---------------------------",
@@ -3294,6 +3328,13 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         body(),
         area()
       ],
+      "T": () => [
+        sprite("tree3"),
+        scale(0.8),
+        origin("bot"),
+        z(-1),
+        pos(-20, 50)
+      ],
       "1": () => [
         sprite("amyabubble"),
         scale(0.3),
@@ -3336,14 +3377,14 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       "                                     ",
       "                                     ",
       "                              X      ",
-      "                                     ",
-      "                                      ",
-      "                                      ",
-      "                                      ",
-      "            @                    Q   #",
-      "           {=========================}",
+      "                                            3           ",
+      "                                                        ",
+      "                                              Q     B     ",
+      "                                              {=====}     ",
+      "           2@           F            #",
+      " 1         {==========================}",
       "           ---------------------------",
-      "   O  P    ---------------------------",
+      "   O TP    ---------------------------",
       "  {===}    ---------------------------",
       "           ---------------------------",
       "           ---------------------------",
@@ -3426,6 +3467,40 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         pos(10, -10),
         origin("center"),
         area({ scale: 0.7 })
+      ],
+      "1": () => [
+        sprite("saneeshbubble"),
+        scale(0.3),
+        origin("center")
+      ],
+      "2": () => [
+        sprite("jerinebubble"),
+        scale(0.3),
+        origin("right")
+      ],
+      "3": () => [
+        sprite("benbubble"),
+        scale(0.3),
+        origin("center")
+      ],
+      "T": () => [
+        sprite("tree2"),
+        scale(0.8),
+        origin("bot"),
+        z(-1),
+        pos(-20, 60)
+      ],
+      "B": () => [
+        sprite("tree5"),
+        scale(0.8),
+        origin("bot"),
+        z(-1),
+        pos(-20, 50)
+      ],
+      "F": () => [
+        sprite("fox", { anim: "Idle" }),
+        scale(2),
+        origin("center")
       ]
     });
     player_default();
@@ -3486,8 +3561,22 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
   loadSprite("background1", "sprites/background/Background2.png");
   loadSprite("background2", "sprites/background/Background.png");
   loadSprite("amyabubble", "sprites/misc/AmyaBubble.png");
+  loadSprite("saneeshbubble", "sprites/misc/SaneeshBubble.png");
+  loadSprite("jerinebubble", "sprites/misc/JerineBubble.png");
+  loadSprite("jaijobubble", "sprites/misc/Jaijo Bubble.png");
+  loadSprite("mikebubble", "sprites/misc/MikeBubble.png");
+  loadSprite("binububble", "sprites/misc/BinuBubble.png");
+  loadSprite("benbubble", "sprites/misc/BensBubble.png");
+  loadSprite("tree1", "sprites/objects/tree_4.png");
+  loadSprite("tree2", "sprites/objects/tree_6.png");
+  loadSprite("tree3", "sprites/objects/tree_8.png");
+  loadSprite("tree4", "sprites/objects/tree_15.png");
+  loadSprite("tree5", "sprites/objects/tree_26.png");
+  loadSprite("tree6", "sprites/objects/tree_27.png");
   loadAseprite("tile", "sprites/objects/DarkForestTile.png", "sprites/objects/DarkForestTile.Json");
   loadAseprite("cat", "sprites/objects/Cat.png", "sprites/objects/Cat.Json");
+  loadAseprite("fox", "sprites/objects/Fox.png", "sprites/objects/Fox.Json");
+  loadAseprite("crow", "sprites/objects/Crow.png", "sprites/objects/Crow.Json");
   loadAseprite("portal", "sprites/objects/Portal.png", "sprites/objects/Portal.Json");
   scene("Home", Home_default);
   scene("Portfolio", Portfolio_default);
