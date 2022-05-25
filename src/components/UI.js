@@ -183,6 +183,21 @@ function UI() {
     }))
 
 
+
+    /*
+    onHover("right", (() => {
+        onTouchStart(() => {
+            player.move(clickSpeed, 0)
+            player.flipX(false)
+            right.frame = 1;
+            if (player.isGrounded() && player.curAnim() !== "AdamWalk") {
+                player.play("AdamWalk")
+            }
+        })
+    }))
+     */
+
+
     onHover("right", (() => {
         if(mouseIsDown()) {
             player.move(clickSpeed, 0)

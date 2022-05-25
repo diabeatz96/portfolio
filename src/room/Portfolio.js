@@ -22,9 +22,16 @@ function Portfolio() {
         "                           ",
         "                           ",
         "                           ",
-        "                           ",
-        " @                                                                              #",
+        "         P                 ",
+        " @                                                  Q                             #",
         "{================================================================================}",
+        "                                                                                  ",
+        "                                                                                  ",
+        "                                                                                  ",
+        "                       W                                                          ",
+        "                     {===}                                                        ",
+        "                                                                                  ",
+
 
 
     ], {
@@ -77,6 +84,27 @@ function Portfolio() {
             area({scale: 0.3}),
             origin("center"),
             "portal3"
+        ],
+        "P": () => [
+            sprite("player", {anim: "Binu", flipX: true}),
+            scale(2),
+            origin("center"),
+            pos(10, 26),
+            area(),
+        ],
+        "Q": () => [
+            sprite("player", {anim: "Jaijo", flipX: true}),
+            scale(2),
+            pos(10, -7),
+            origin("center"),
+            area({scale: 0.7}),
+        ],
+        "W": () => [
+            sprite("player", {anim: "Mike", flipX: true}),
+            scale(2),
+            origin("center"),
+            body(),
+            area(),
         ],
     })
 

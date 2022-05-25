@@ -3006,9 +3006,15 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
       "                           ",
       "                           ",
       "                           ",
-      "                           ",
-      " @                                                                              #",
-      "{================================================================================}"
+      "         P                 ",
+      " @                                                  Q                             #",
+      "{================================================================================}",
+      "                                                                                  ",
+      "                                                                                  ",
+      "                                                                                  ",
+      "                       W                                                          ",
+      "                     {===}                                                        ",
+      "                                                                                  "
     ], {
       width: 32,
       height: 32,
@@ -3057,6 +3063,27 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
         area({ scale: 0.3 }),
         origin("center"),
         "portal3"
+      ],
+      "P": () => [
+        sprite("player", { anim: "Binu", flipX: true }),
+        scale(2),
+        origin("center"),
+        pos(10, 26),
+        area()
+      ],
+      "Q": () => [
+        sprite("player", { anim: "Jaijo", flipX: true }),
+        scale(2),
+        pos(10, -7),
+        origin("center"),
+        area({ scale: 0.7 })
+      ],
+      "W": () => [
+        sprite("player", { anim: "Mike", flipX: true }),
+        scale(2),
+        origin("center"),
+        body(),
+        area()
       ]
     });
     add([
