@@ -3532,7 +3532,7 @@ vec4 frag(vec3 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
   }
   if (isMobile()) {
-    screen.orientation.lock("landscape");
+    window.location.href = "http://adamkostandy.netlify.app/mobile";
   }
   no({
     width: 1e3,

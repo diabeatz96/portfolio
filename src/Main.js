@@ -11,7 +11,7 @@ function isMobile() {
 }
 
 if (isMobile()) {
-    screen.orientation.lock('landscape');
+    window.location.href = "http://adamkostandy.netlify.app/mobile";
 }
 
 kaboom({
